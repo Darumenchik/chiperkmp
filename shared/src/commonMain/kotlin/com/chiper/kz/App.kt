@@ -21,6 +21,7 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
@@ -51,13 +52,13 @@ import kotlinx.coroutines.delay
 @Composable
 fun App() {
     val settingsRepository = remember { SettingsRepository.create() }
-    val themeViewModel = androidx.lifecycle.viewmodel.viewModel { ThemeViewModel(settingsRepository) }
+    val themeViewModel = viewModel { ThemeViewModel(settingsRepository) }
     AnimatedChiperTheme(viewModel = themeViewModel) {
         var showSplash by remember { mutableStateOf(true) }
         var showOnboarding by remember { mutableStateOf(false) }
 
         if (showSplash) {
-            SplashScreenContent(onSplashFinished = {
+            SplashScreen(onSplashFinished = {
                 showSplash = false
                 showOnboarding = true
             })

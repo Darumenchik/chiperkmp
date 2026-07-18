@@ -14,12 +14,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.layout.Arrangement
 import cafe.adriel.voyager.core.screen.Screen
-import cafe.adriel.voyager.core.registry.ScreenRegistry
 import com.chiper.kz.theme.*
 import kotlinx.coroutines.delay
 
-class SplashScreen : Screen {
+class SplashScreen(
+    val onSplashFinished: () -> Unit = {}
+) : Screen {
 
     @Composable
     override fun Content() {
@@ -58,6 +60,7 @@ class SplashScreen : Screen {
             startAnimation = true
             delay(2500)
             navigateNext = true
+            onSplashFinished()
         }
 
         Box(

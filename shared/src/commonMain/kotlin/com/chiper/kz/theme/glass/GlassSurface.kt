@@ -14,6 +14,9 @@ import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.drawscope.drawRect
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.px
+import kotlin.math.max
+import kotlin.math.sin
+import kotlin.math.cos
 
 @Composable
 fun GlassSurface(
@@ -172,8 +175,8 @@ private fun AnimatedBackground(
                 .background(
                     Brush.radialGradient(
                         center = Offset(
-                            size.width * (0.3f + 0.4f * sin(offset1 * Math.PI / 180)),
-                            size.height * (0.2f + 0.3f * cos(offset1 * Math.PI / 180))
+                            size.width * (0.3f + 0.4f * sin(offset1 * kotlin.math.PI / 180)),
+                            size.height * (0.2f + 0.3f * cos(offset1 * kotlin.math.PI / 180))
                         ),
                         radius = max(size.width, size.height) * 0.7f,
                         colors = colors.map { it.copy(alpha = it.alpha * 0.4f) }
@@ -186,8 +189,8 @@ private fun AnimatedBackground(
                 .background(
                     Brush.radialGradient(
                         center = Offset(
-                            size.width * (0.7f + 0.2f * cos(offset2 * Math.PI / 180)),
-                            size.height * (0.8f + 0.1f * sin(offset2 * Math.PI / 180))
+                            size.width * (0.7f + 0.2f * cos(offset2 * kotlin.math.PI / 180)),
+                            size.height * (0.8f + 0.1f * sin(offset2 * kotlin.math.PI / 180))
                         ),
                         radius = max(size.width, size.height) * 0.6f,
                         colors = colors.map { it.copy(alpha = it.alpha * 0.3f) }
@@ -253,6 +256,3 @@ object GlassGradients {
         Color(0xFF1F0040)
     )
 }
-
-private fun sin(degrees: Float): Float = kotlin.math.sin(degrees * kotlin.math.PI / 180.0f)
-private fun cos(degrees: Float): Float = kotlin.math.cos(degrees * kotlin.math.PI / 180.0f)

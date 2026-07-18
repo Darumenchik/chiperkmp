@@ -1,10 +1,5 @@
 package com.chiper.kz.navigation
 
-import cafe.adriel.voyager.core.screen.Screen
-import com.chiper.kz.screens.onboarding.OnboardingScreen
-import com.chiper.kz.screens.groups.GroupsScreen
-import com.chiper.kz.screens.channels.ChannelsScreen
-
 sealed class Screen {
     data object Splash : Screen()
     data object Onboarding : Screen()

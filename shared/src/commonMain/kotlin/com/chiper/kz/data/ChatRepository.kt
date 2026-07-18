@@ -1,5 +1,6 @@
 package com.chiper.kz.data
 
+import com.chiper.kz.utils.PlatformTime
 import com.chiper.kz.model.Chat
 import com.chiper.kz.model.Message
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -26,17 +27,17 @@ class ChatRepository {
 
     suspend fun sendMessage(chatId: String, text: String) {
         val message = Message(
-            id = "msg_${System.currentTimeMillis()}",
+            id = "msg_${PlatformTime.currentTimeMillis()}",
             chatId = chatId,
             senderId = "user1",
             text = text,
-            timestamp = System.currentTimeMillis(),
+            timestamp = PlatformTime.currentTimeMillis(),
             isRead = false,
             isSentByMe = true
         )
         _messages.value = _messages.value + message
         _chats.value = _chats.value.map {
-            if (it.id == chatId) it.copy(lastMessage = text, lastMessageTime = System.currentTimeMillis())
+            if (it.id == chatId) it.copy(lastMessage = text, lastMessageTime = PlatformTime.currentTimeMillis())
             else it
         }
 
@@ -55,11 +56,11 @@ class ChatRepository {
             "Супер!"
         )
         val reply = Message(
-            id = "msg_${System.currentTimeMillis()}",
+            id = "msg_${PlatformTime.currentTimeMillis()}",
             chatId = chatId,
             senderId = _chats.value.find { it.id == chatId }?.companionId ?: "user2",
             text = replies.random(),
-            timestamp = System.currentTimeMillis(),
+            timestamp = PlatformTime.currentTimeMillis(),
             isRead = false,
             isSentByMe = false
         )
@@ -67,7 +68,7 @@ class ChatRepository {
         _chats.value = _chats.value.map {
             if (it.id == chatId) it.copy(
                 lastMessage = reply.text,
-                lastMessageTime = System.currentTimeMillis()
+                lastMessageTime = PlatformTime.currentTimeMillis()
             )
             else it
         }
@@ -85,7 +86,7 @@ class ChatRepository {
             name = "Мария Иванова",
             avatarUrl = "",
             lastMessage = "Привет! Как дела с проектом?",
-            lastMessageTime = System.currentTimeMillis() - 120000,
+            lastMessageTime = PlatformTime.currentTimeMillis() - 120000,
             unreadCount = 2,
             isOnline = true,
             companionId = "user2"
@@ -95,7 +96,7 @@ class ChatRepository {
             name = "Дмитрий Козлов",
             avatarUrl = "",
             lastMessage = "Отправил тебе документы на почту",
-            lastMessageTime = System.currentTimeMillis() - 3600000,
+            lastMessageTime = PlatformTime.currentTimeMillis() - 3600000,
             unreadCount = 0,
             isOnline = false,
             companionId = "user3"
@@ -105,7 +106,7 @@ class ChatRepository {
             name = "Анна Сидорова",
             avatarUrl = "",
             lastMessage = "Увидимся завтра в 15:00!",
-            lastMessageTime = System.currentTimeMillis() - 7200000,
+            lastMessageTime = PlatformTime.currentTimeMillis() - 7200000,
             unreadCount = 1,
             isOnline = true,
             companionId = "user4"
@@ -115,7 +116,7 @@ class ChatRepository {
             name = "Команда Chiper",
             avatarUrl = "",
             lastMessage = "Релиз запланирован на пятницу",
-            lastMessageTime = System.currentTimeMillis() - 14400000,
+            lastMessageTime = PlatformTime.currentTimeMillis() - 14400000,
             unreadCount = 5,
             isOnline = false,
             companionId = "team"
@@ -125,7 +126,7 @@ class ChatRepository {
             name = "Елена Волкова",
             avatarUrl = "",
             lastMessage = "Спасибо за помощь! 🙏",
-            lastMessageTime = System.currentTimeMillis() - 86400000,
+            lastMessageTime = PlatformTime.currentTimeMillis() - 86400000,
             unreadCount = 0,
             isOnline = false,
             companionId = "user5"
@@ -135,7 +136,7 @@ class ChatRepository {
             name = "Игорь Новиков",
             avatarUrl = "",
             lastMessage = "Посмотри новый PR в репозитории",
-            lastMessageTime = System.currentTimeMillis() - 172800000,
+            lastMessageTime = PlatformTime.currentTimeMillis() - 172800000,
             unreadCount = 0,
             isOnline = true,
             companionId = "user6"
@@ -143,29 +144,29 @@ class ChatRepository {
     )
 
     private fun demoMessages() = listOf(
-        Message("m1", "chat1", "user2", "Привет! Как дела с проектом?", System.currentTimeMillis() - 180000, false, false),
-        Message("m2", "chat1", "user2", "Мы должны закончить MVP до пятницы", System.currentTimeMillis() - 170000, false, false),
-        Message("m3", "chat1", "user1", "Привет! Всё хорошо, работаю над фронтендом", System.currentTimeMillis() - 120000, true, true),
-        Message("m4", "chat1", "user1", "Думаю, успеем к пятнице", System.currentTimeMillis() - 110000, true, true),
+        Message("m1", "chat1", "user2", "Привет! Как дела с проектом?", PlatformTime.currentTimeMillis() - 180000, false, false),
+        Message("m2", "chat1", "user2", "Мы должны закончить MVP до пятницы", PlatformTime.currentTimeMillis() - 170000, false, false),
+        Message("m3", "chat1", "user1", "Привет! Всё хорошо, работаю над фронтендом", PlatformTime.currentTimeMillis() - 120000, true, true),
+        Message("m4", "chat1", "user1", "Думаю, успеем к пятнице", PlatformTime.currentTimeMillis() - 110000, true, true),
 
-        Message("m5", "chat2", "user3", "Привет, нужна твоя помощь с API", System.currentTimeMillis() - 7200000, true, false),
-        Message("m6", "chat2", "user1", "Конечно, что нужно?", System.currentTimeMillis() - 7100000, true, true),
-        Message("m7", "chat2", "user3", "Отправил тебе документы на почту", System.currentTimeMillis() - 3600000, true, false),
+        Message("m5", "chat2", "user3", "Привет, нужна твоя помощь с API", PlatformTime.currentTimeMillis() - 7200000, true, false),
+        Message("m6", "chat2", "user1", "Конечно, что нужно?", PlatformTime.currentTimeMillis() - 7100000, true, true),
+        Message("m7", "chat2", "user3", "Отправил тебе документы на почту", PlatformTime.currentTimeMillis() - 3600000, true, false),
 
-        Message("m8", "chat3", "user4", "Давай встретимся завтра?", System.currentTimeMillis() - 10800000, true, false),
-        Message("m9", "chat3", "user1", "Да, во сколько?", System.currentTimeMillis() - 10700000, true, true),
-        Message("m10", "chat3", "user4", "Увидимся завтра в 15:00!", System.currentTimeMillis() - 7200000, false, false),
+        Message("m8", "chat3", "user4", "Давай встретимся завтра?", PlatformTime.currentTimeMillis() - 10800000, true, false),
+        Message("m9", "chat3", "user1", "Да, во сколько?", PlatformTime.currentTimeMillis() - 10700000, true, true),
+        Message("m10", "chat3", "user4", "Увидимся завтра в 15:00!", PlatformTime.currentTimeMillis() - 7200000, false, false),
 
-        Message("m11", "chat4", "team", "Ребят, напоминаю про стендап в 10:00", System.currentTimeMillis() - 28800000, true, false),
-        Message("m12", "chat4", "team", "Обновил задачи в Jira", System.currentTimeMillis() - 21600000, true, false),
-        Message("m13", "chat4", "team", "Релиз запланирован на пятницу", System.currentTimeMillis() - 14400000, false, false),
+        Message("m11", "chat4", "team", "Ребят, напоминаю про стендап в 10:00", PlatformTime.currentTimeMillis() - 28800000, true, false),
+        Message("m12", "chat4", "team", "Обновил задачи в Jira", PlatformTime.currentTimeMillis() - 21600000, true, false),
+        Message("m13", "chat4", "team", "Релиз запланирован на пятницу", PlatformTime.currentTimeMillis() - 14400000, false, false),
 
-        Message("m14", "chat5", "user5", "Помоги с настройкой CI/CD", System.currentTimeMillis() - 172800000, true, false),
-        Message("m15", "chat5", "user1", "Готово, посмотри в репозитории", System.currentTimeMillis() - 86400000, true, true),
-        Message("m16", "chat5", "user5", "Спасибо за помощь! 🙏", System.currentTimeMillis() - 86300000, true, false),
+        Message("m14", "chat5", "user5", "Помоги с настройкой CI/CD", PlatformTime.currentTimeMillis() - 172800000, true, false),
+        Message("m15", "chat5", "user1", "Готово, посмотри в репозитории", PlatformTime.currentTimeMillis() - 86400000, true, true),
+        Message("m16", "chat5", "user5", "Спасибо за помощь! 🙏", PlatformTime.currentTimeMillis() - 86300000, true, false),
 
-        Message("m17", "chat6", "user6", "Есть проблемы с тестами", System.currentTimeMillis() - 259200000, true, false),
-        Message("m18", "chat6", "user1", "Попробуй обновить зависимости", System.currentTimeMillis() - 172800001, true, true),
-        Message("m19", "chat6", "user6", "Посмотри новый PR в репозитории", System.currentTimeMillis() - 172800000, true, false)
+        Message("m17", "chat6", "user6", "Есть проблемы с тестами", PlatformTime.currentTimeMillis() - 259200000, true, false),
+        Message("m18", "chat6", "user1", "Попробуй обновить зависимости", PlatformTime.currentTimeMillis() - 172800001, true, true),
+        Message("m19", "chat6", "user6", "Посмотри новый PR в репозитории", PlatformTime.currentTimeMillis() - 172800000, true, false)
     )
 }

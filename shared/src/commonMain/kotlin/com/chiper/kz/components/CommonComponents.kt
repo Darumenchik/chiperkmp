@@ -1,5 +1,6 @@
 package com.chiper.kz.components
 
+import com.chiper.kz.utils.PlatformTime
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -83,7 +84,7 @@ fun UnreadBadge(count: Int, modifier: Modifier = Modifier) {
 }
 
 fun formatTime(timestamp: Long): String {
-    val now = System.currentTimeMillis()
+    val now = PlatformTime.currentTimeMillis()
     val diff = now - timestamp
     val minutes = diff / 60000
     val hours = diff / 3600000

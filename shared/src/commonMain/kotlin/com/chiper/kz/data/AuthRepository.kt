@@ -1,5 +1,6 @@
 package com.chiper.kz.data
 
+import com.chiper.kz.utils.PlatformTime
 import com.chiper.kz.model.User
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -54,7 +55,7 @@ class AuthRepository {
             return Result.failure(Exception("Введите имя"))
         }
         val user = User(
-            id = "user_${System.currentTimeMillis()}",
+            id = "user_${PlatformTime.currentTimeMillis()}",
             name = name,
             email = email,
             avatarUrl = "",
@@ -69,7 +70,7 @@ class AuthRepository {
     suspend fun loginWithGoogle(): Result<User> {
         kotlinx.coroutines.delay(1500)
         val user = User(
-            id = "google_user_${System.currentTimeMillis()}",
+            id = "google_user_${PlatformTime.currentTimeMillis()}",
             name = "Google User",
             email = "google@chiper.kz",
             avatarUrl = "",

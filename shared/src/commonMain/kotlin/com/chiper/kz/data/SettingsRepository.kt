@@ -1,40 +1,21 @@
 package com.chiper.kz.data
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import com.chiper.kz.theme.AppTheme
+import com.chiper.kz.theme.ThemeMode
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
 
 class SettingsRepository {
 
     private val _appTheme = MutableStateFlow(AppTheme.Default)
     val appTheme: StateFlow<AppTheme> = _appTheme.asStateFlow()
 
-    private val _themeMode = MutableStateFlow(ThemeMode.System)
+    private val _themeMode = MutableStateFlow<ThemeMode>(ThemeMode.System)
     val themeMode: StateFlow<ThemeMode> = _themeMode.asStateFlow()
 
-    init {
-        loadSettings()
-    }
-
-    private fun loadSettings() {
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val prefs = dataStore.data.firstOrNull()
-                prefs?.let {
-                    val themeId = it[THEME_ID_KEY] ?: AppTheme.Default.id
-                    val modeStr = it[THEME_MODE_KEY] ?: ThemeMode.System.name
-                    _appTheme.value = AppTheme.fromId(themeId)
-                    _themeMode.value = ThemeMode.valueOf(modeStr)
-                }
-            } catch (e: Exception) {
-                _appTheme.value = AppTheme.Default
-                _themeMode.value = ThemeMode.System
-            }
-        }
-    }
+    private val _user = MutableStateFlow(AppUser())
+    val user: StateFlow<AppUser> = _user.asStateFlow()
 
     fun getAppTheme(): AppTheme = _appTheme.value
     fun getThemeMode(): ThemeMode = _themeMode.value
@@ -48,16 +29,7 @@ class SettingsRepository {
     }
 
     suspend fun setUser(user: AppUser?) {
-        // In-memory only; persist in platform layer
-    }
-
-    suspend fun setNotificationsEnabled(enabled: Boolean) {
-    }
-
-    suspend fun setAutoDownloadMedia(enabled: Boolean) {
-    }
-
-    suspend fun setLanguage(language: String) {
+        if (user != null) _user.value = user
     }
 
     companion object {

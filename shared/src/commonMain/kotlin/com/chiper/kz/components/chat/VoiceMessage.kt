@@ -4,21 +4,25 @@ import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.gestures.pointerInput
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.Icons.Icons
+import androidx.compose.material.Icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlin.math.min
 import kotlin.random.Random
 import com.chiper.kz.model.Message
 import com.chiper.kz.theme.glass.GlassSurface
@@ -27,6 +31,7 @@ import com.chiper.kz.theme.glass.GlassShapes
 import com.chiper.kz.utils.HapticFeedback
 import com.chiper.kz.utils.HapticType
 import com.chiper.kz.utils.rememberHapticFeedback
+import com.chiper.kz.utils.trigger
 import kotlinx.coroutines.delay
 
 @Composable
@@ -54,16 +59,9 @@ fun VoiceMessageBubble(
     }
 
     // Wave animation
-    LaunchedEffect(Unit) {
+    LaunchedEffect(isPlaying) {
         if (isPlaying) {
-            infiniteRepeatable(
-                animation = tween(800, easing = LinearEasing),
-                repeatMode = RepeatMode.Restart
-            )
-        }
-    }.also {
-        if (isPlaying) {
-            while (isPlaying) {
+            while (true) {
                 waveAnimProgress = (waveAnimProgress + 0.02f) % 1f
                 pulseAnimProgress = (pulseAnimProgress + 0.015f) % 1f
                 delay(16)
@@ -175,7 +173,7 @@ fun ExpandedWaveform(
         modifier = modifier
             .fillMaxWidth()
             .wrapContentSize(Alignment.CenterVertically),
-        horizontalArrangement = Arrangement.spacedBy(spacing.toPx()),
+        horizontalArrangement = Arrangement.spacedBy(spacing),
         verticalAlignment = Alignment.CenterVertically
     ) {
         (0 until barCount).forEach { i ->
@@ -248,28 +246,30 @@ fun VoiceRecorder(
             ) {
                 // Outer pulsing rings
                 AnimatedVisibility(visible = isRecording) {
-                    (0..2).forEach { i ->
-                        val ringProgress by remember { mutableStateOf(0f) }
-                        LaunchedEffect(i) {
-                            while (isRecording) {
-                                ringProgress = (ringProgress + 0.005f) % 1f
-                                delay(16)
-                            }
-                        }
-
-                        Box(
-                            modifier = Modifier
-                                .size(120.dp + i * 40.dp)
-                                .graphicsLayer {
-                                    scaleX = 0.5f + ringProgress * 0.5f
-                                    scaleY = 0.5f + ringProgress * 0.5f
-                                    alpha = 1f - ringProgress
+                    Column {
+                        (0..2).forEach { i ->
+                            val ringProgress by remember { mutableStateOf(0f) }
+                            LaunchedEffect(i) {
+                                while (isRecording) {
+                                    ringProgress = (ringProgress + 0.005f) % 1f
+                                    delay(16)
                                 }
-                                .background(
-                                    Color(0xFFE53935).copy(alpha = 0.15f),
-                                    androidx.compose.foundation.shape.CircleShape
-                                )
-                        )
+                            }
+
+                            Box(
+                                modifier = Modifier
+                                    .size(120.dp + i * 40.dp)
+                                    .graphicsLayer {
+                                        scaleX = 0.5f + ringProgress * 0.5f
+                                        scaleY = 0.5f + ringProgress * 0.5f
+                                        alpha = 1f - ringProgress
+                                    }
+                                    .background(
+                                        Color(0xFFE53935).copy(alpha = 0.15f),
+                                        CircleShape
+                                    )
+                            )
+                        }
                     }
                 }
 
@@ -279,7 +279,7 @@ fun VoiceRecorder(
                         .size(80.dp)
                         .background(
                             Color(0xFFE53935),
-                            androidx.compose.foundation.shape.CircleShape
+                            CircleShape
                         )
                         .clickable(
                             interactionSource = remember { MutableInteractionSource() },

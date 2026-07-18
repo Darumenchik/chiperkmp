@@ -6,12 +6,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.canvas.Canvas
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Refresh
-import androidx.compose.material.icons.filled.ArrowDownward
+import androidx.compose.material.Icons.Icons
+import androidx.compose.material.Icons.filled.Refresh
+import androidx.compose.material.Icons.filled.ArrowDownward
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,6 +22,8 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.drawCircle
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -95,7 +98,7 @@ fun PullToRefresh(
         }
 
         // Content with pull gesture
-        androidx.compose.foundation.gestures.PullToRefreshBox(
+        PullToRefreshBox(
             refreshing = isRefreshing,
             onRefresh = onRefresh,
             modifier = Modifier.fillMaxSize()
@@ -125,7 +128,7 @@ fun InfiniteSpinner(
             .clip(CircleShape)
             .background(Color.Transparent)
     ) {
-        val center = androidx.compose.ui.geometry.Offset(size.width / 2f, size.height / 2f)
+        val center = Offset(size.width / 2f, size.height / 2f)
         val radius = min(size.width, size.height) / 2f - strokeWidth.toPx() / 2f
         val startAngle = progress * 360
         val sweepAngle = 90f + (sin((progress * 720).toDouble() * PI / 180.0) + 1) * 90f
@@ -135,8 +138,8 @@ fun InfiniteSpinner(
             startAngle = startAngle,
             sweepAngle = sweepAngle,
             useCenter = false,
-            topLeft = androidx.compose.ui.geometry.Offset(center.x - radius, center.y - radius),
-            size = androidx.compose.ui.geometry.Size(2 * radius, 2 * radius),
+            topLeft = Offset(center.x - radius, center.y - radius),
+            size = Size(2 * radius, 2 * radius),
             style = Stroke(width = strokeWidth.toPx(), cap = StrokeCap.Round)
         )
     }

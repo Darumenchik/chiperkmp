@@ -31,18 +31,26 @@ import com.chiper.kz.screens.groups.GroupsScreen
 import com.chiper.kz.screens.channels.ChannelsScreen
 import com.chiper.kz.screens.onboarding.OnboardingScreen
 import com.chiper.kz.screens.profile.ProfileScreen
+import com.chiper.kz.screens.splash.SplashScreen
 import com.chiper.kz.theme.AnimatedChiperTheme
+import com.chiper.kz.theme.SplashGradientStart
+import com.chiper.kz.theme.SplashGradientEnd
+import com.chiper.kz.theme.TelegramBlue
+import com.chiper.kz.theme.TextSecondary
+import com.chiper.kz.theme.TelegramPaleBlue
+import com.chiper.kz.theme.SettingsRepository
+import com.chiper.kz.theme.ThemeViewModel
 import kotlinx.coroutines.delay
 
 @Composable
 fun App() {
-    val themeViewModel = androidx.lifecycle.viewmodel.viewModel { ThemeViewModel() }
+    val themeViewModel = androidx.lifecycle.viewmodel.viewModel { ThemeViewModel(SettingsRepository(androidx.datastore.core.DataStoreFactory.create(androidx.datastore.preferences.core.PreferencesSerializer())))}
     AnimatedChiperTheme(viewModel = themeViewModel) {
         var showSplash by remember { mutableStateOf(true) }
         var showOnboarding by remember { mutableStateOf(false) }
 
         if (showSplash) {
-            SplashScreenContent(onSplashFinished = {
+            SplashScreen(onSplashFinished = {
                 showSplash = false
                 showOnboarding = true
             })
@@ -98,8 +106,8 @@ private fun SplashScreenContent(onSplashFinished: () -> Unit) {
             .background(
                 Brush.verticalGradient(
                     colors = listOf(
-                        com.chiper.kz.theme.SplashGradientStart,
-                        com.chiper.kz.theme.SplashGradientEnd
+                        SplashGradientStart,
+                        SplashGradientEnd
                     )
                 )
             ),
@@ -170,11 +178,11 @@ class MainTabScreen : Screen {
                             selected = tabNavigator.current.key == ChatListTab.key,
                             onClick = { tabNavigator.current = ChatListTab },
                             colors = NavigationBarItemDefaults.colors(
-                                selectedIconColor = com.chiper.kz.theme.TelegramBlue,
-                                selectedTextColor = com.chiper.kz.theme.TelegramBlue,
-                                unselectedIconColor = com.chiper.kz.theme.TextSecondary,
-                                unselectedTextColor = com.chiper.kz.theme.TextSecondary,
-                                indicatorColor = com.chiper.kz.theme.TelegramPaleBlue
+                                selectedIconColor = TelegramBlue,
+                                selectedTextColor = TelegramBlue,
+                                unselectedIconColor = TextSecondary,
+                                unselectedTextColor = TextSecondary,
+                                indicatorColor = TelegramPaleBlue
                             )
                         )
                         NavigationBarItem(
@@ -183,11 +191,11 @@ class MainTabScreen : Screen {
                             selected = tabNavigator.current.key == GroupsTab.key,
                             onClick = { tabNavigator.current = GroupsTab },
                             colors = NavigationBarItemDefaults.colors(
-                                selectedIconColor = com.chiper.kz.theme.TelegramBlue,
-                                selectedTextColor = com.chiper.kz.theme.TelegramBlue,
-                                unselectedIconColor = com.chiper.kz.theme.TextSecondary,
-                                unselectedTextColor = com.chiper.kz.theme.TextSecondary,
-                                indicatorColor = com.chiper.kz.theme.TelegramPaleBlue
+                                selectedIconColor = TelegramBlue,
+                                selectedTextColor = TelegramBlue,
+                                unselectedIconColor = TextSecondary,
+                                unselectedTextColor = TextSecondary,
+                                indicatorColor = TelegramPaleBlue
                             )
                         )
                         NavigationBarItem(
@@ -196,11 +204,11 @@ class MainTabScreen : Screen {
                             selected = tabNavigator.current.key == ChannelsTab.key,
                             onClick = { tabNavigator.current = ChannelsTab },
                             colors = NavigationBarItemDefaults.colors(
-                                selectedIconColor = com.chiper.kz.theme.TelegramBlue,
-                                selectedTextColor = com.chiper.kz.theme.TelegramBlue,
-                                unselectedIconColor = com.chiper.kz.theme.TextSecondary,
-                                unselectedTextColor = com.chiper.kz.theme.TextSecondary,
-                                indicatorColor = com.chiper.kz.theme.TelegramPaleBlue
+                                selectedIconColor = TelegramBlue,
+                                selectedTextColor = TelegramBlue,
+                                unselectedIconColor = TextSecondary,
+                                unselectedTextColor = TextSecondary,
+                                indicatorColor = TelegramPaleBlue
                             )
                         )
                         NavigationBarItem(
@@ -209,11 +217,11 @@ class MainTabScreen : Screen {
                             selected = tabNavigator.current.key == ProfileTab.key,
                             onClick = { tabNavigator.current = ProfileTab },
                             colors = NavigationBarItemDefaults.colors(
-                                selectedIconColor = com.chiper.kz.theme.TelegramBlue,
-                                selectedTextColor = com.chiper.kz.theme.TelegramBlue,
-                                unselectedIconColor = com.chiper.kz.theme.TextSecondary,
-                                unselectedTextColor = com.chiper.kz.theme.TextSecondary,
-                                indicatorColor = com.chiper.kz.theme.TelegramPaleBlue
+                                selectedIconColor = TelegramBlue,
+                                selectedTextColor = TelegramBlue,
+                                unselectedIconColor = TextSecondary,
+                                unselectedTextColor = TextSecondary,
+                                indicatorColor = TelegramPaleBlue
                             )
                         )
                     }

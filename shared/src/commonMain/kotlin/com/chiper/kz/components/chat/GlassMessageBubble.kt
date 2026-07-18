@@ -27,6 +27,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.Dp
 import com.chiper.kz.model.Message
 import com.chiper.kz.theme.ChiperColorScheme
 import com.chiper.kz.theme.glass.GlassElevation
@@ -41,9 +42,9 @@ import kotlinx.coroutines.launch
 fun GlassMessageBubble(
     message: Message,
     onReply: ((Message) -> Unit)? = null,
-    onLongPress: ((Message) -> Unit)? = nil,
-    onReactionClick: ((Message, String) -> Unit)? = nil,
-    onReactionAdd: ((Message, String) -> Unit)? = nil,
+    onLongPress: ((Message) -> Unit)? = null,
+    onReactionClick: ((Message, String) -> Unit)? = null,
+    onReactionAdd: ((Message, String) -> Unit)? = null,
     isSelected: Boolean = false,
     showTime: Boolean = true,
     showStatus: Boolean = true,
@@ -208,8 +209,8 @@ fun GlassMessageBubble(
                 MarkdownText(
                     text = message.text,
                     color = textColor,
-                    fontSize = 15.sp,
-                    lineHeight = 20.sp
+                    fontSize = 15,
+                    lineHeight = 20
                 )
 
                 // Reactions

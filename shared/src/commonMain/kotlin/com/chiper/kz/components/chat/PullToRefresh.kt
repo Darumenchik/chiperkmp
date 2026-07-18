@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.ArrowDownward
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -60,7 +62,7 @@ fun PullToRefresh(
                     if (isRefreshing) {
                         InfiniteSpinner(
                             modifier = Modifier.size(40.dp),
-                            color = com.chiper.kz.theme.MaterialTheme.colorScheme.primary
+                            color = MaterialTheme.colorScheme.primary
                         )
                     } else {
                         val rotation = (pullDistance / triggerDistance * 180).coerceIn(0f, 180f)
@@ -74,7 +76,7 @@ fun PullToRefresh(
                             Icon(
                                 imageVector = Icons.Default.ArrowDownward,
                                 contentDescription = "Pull to refresh",
-                                tint = com.chiper.kz.theme.MaterialTheme.colorScheme.primary
+                                tint = MaterialTheme.colorScheme.primary
                             )
                         }
                     }
@@ -96,7 +98,7 @@ fun PullToRefresh(
 @Composable
 fun InfiniteSpinner(
     modifier: Modifier = Modifier,
-    color: Color = com.chiper.kz.theme.MaterialTheme.colorScheme.primary,
+    color: Color = MaterialTheme.colorScheme.primary,
     strokeWidth: Dp = 3.dp
 ) {
     val progress by animateFloatAsState(
@@ -113,7 +115,7 @@ fun InfiniteSpinner(
             .clip(CircleShape)
             .background(Color.Transparent)
     ) {
-        val center = Offset(size.width / 2f, size.height / 2f)
+        val center = androidx.compose.ui.geometry.Offset(size.width / 2f, size.height / 2f)
         val radius = min(size.width, size.height) / 2f - strokeWidth.toPx() / 2f
         val startAngle = progress * 360
         val sweepAngle = 90f + (kotlin.math.sin(kotlin.math.toRadians(progress * 720)) + 1) * 90f
@@ -123,7 +125,7 @@ fun InfiniteSpinner(
             startAngle = startAngle,
             sweepAngle = sweepAngle,
             useCenter = false,
-            topLeft = Offset(center.x - radius, center.y - radius),
+            topLeft = androidx.compose.ui.geometry.Offset(center.x - radius, center.y - radius),
             size = androidx.compose.ui.geometry.Size(2 * radius, 2 * radius),
             style = Stroke(width = strokeWidth.toPx(), cap = StrokeCap.Round)
         )
@@ -166,12 +168,12 @@ fun RefreshHeader(
                     contentAlignment = Alignment.Center
                 ) {
                     if (isRefreshing) {
-                        InfiniteSpinner(color = com.chiper.kz.theme.MaterialTheme.colorScheme.primary)
+                        InfiniteSpinner(color = MaterialTheme.colorScheme.primary)
                     } else {
                         Icon(
                             imageVector = Icons.Default.ArrowDownward,
                             contentDescription = "Pull to refresh",
-                            tint = com.chiper.kz.theme.MaterialTheme.colorScheme.primary.copy(alpha = progress)
+                            tint = MaterialTheme.colorScheme.primary.copy(alpha = progress)
                         )
                     }
                 }
@@ -185,8 +187,8 @@ fun RefreshHeader(
                         else -> "Потяните для обновления"
                     },
                     fontSize = 12.sp,
-                    color = com.chiper.kz.theme.MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = progress),
-                    style = com.chiper.kz.theme.ChiperTypography.labelMedium
+                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = progress),
+                    style = MaterialTheme.typography.labelMedium
                 )
             }
         }

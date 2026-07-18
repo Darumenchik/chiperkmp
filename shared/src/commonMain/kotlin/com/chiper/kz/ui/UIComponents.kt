@@ -15,76 +15,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.chiper.kz.theme.*
-import com.chiper.kz.theme.glass.GlassTypography
-
-@Composable
-fun ChatDensitySelector(
-    selectedDensity: ChatDensity,
-    onDensityChange: (ChatDensity) -> Unit
-) {
-    GlassSurface(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
-        shape = GlassShapes.Card,
-        elevation = GlassElevation.Level1
-    ) {
-        Column(
-            modifier = Modifier.padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = "Плотность чата",
-                style = GlassTypography.TitleMedium
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = "Выберите отступы между сообщениями",
-                style = GlassTypography.BodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                textAlign = androidx.compose.ui.text.style.TextAlign.Center
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                ChatDensity.values().forEach { density ->
-                    val isSelected = selectedDensity == density
-                    GlassButton(
-                        text = density.displayName,
-                        onClick = { onDensityChange(density) },
-                        variant = if (isSelected) GlassButtonVariant.Primary else GlassButtonVariant.Secondary,
-                        fullWidth = false,
-                        leadingIcon = {
-                            if (isSelected) {
-                                Icon(
-                                    imageVector = Icons.Default.Check,
-                                    contentDescription = "Selected",
-                                    tint = Color.White,
-                                    modifier = Modifier.size(16.dp)
-                                )
-                            }
-                        }
-                    )
-                }
-            }
-        }
-    }
-}
-
-enum class ChatDensity(
-    val displayName: String,
-    val messageSpacing: Dp,
-    val bubblePadding: Dp,
-    val avatarSize: Dp
-) {
-    Compact("Компактная", 2.dp, 4.dp, 32.dp),
-    Standard("Стандартная", 8.dp, 8.dp, 40.dp),
-    Relaxed("Просторная", 16.dp, 12.dp, 48.dp)
-}
+import com.chiper.kz.theme.glass.*
+import com.chiper.kz.components.glass.GlassButton
+import com.chiper.kz.components.glass.GlassButtonVariant
+import com.chiper.kz.components.glass.GlassSurface
 
 @Composable
 fun FontScaleSelector(
@@ -256,7 +190,7 @@ fun LandscapeModeNotice() {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
-                imageVector = androidx.compose.material.icons.Icons.Default.ScreenRotation,
+                imageVector = Icons.Default.ScreenRotation,
                 contentDescription = "Landscape",
                 tint = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.size(24.dp)
@@ -273,6 +207,76 @@ fun LandscapeModeNotice() {
                     style = GlassTypography.BodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
+            }
+        }
+    }
+}
+
+// Moved these to be defined before usage
+enum class ChatDensity(
+    val displayName: String,
+    val messageSpacing: Dp,
+    val bubblePadding: Dp,
+    val avatarSize: Dp
+) {
+    Compact("Компактная", 2.dp, 4.dp, 32.dp),
+    Standard("Стандартная", 8.dp, 8.dp, 40.dp),
+    Relaxed("Просторная", 16.dp, 12.dp, 48.dp)
+}
+
+@Composable
+fun ChatDensitySelector(
+    selectedDensity: ChatDensity,
+    onDensityChange: (ChatDensity) -> Unit
+) {
+    GlassSurface(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+        shape = GlassShapes.Card,
+        elevation = GlassElevation.Level1
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = "Плотность чата",
+                style = GlassTypography.TitleMedium
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "Выберите отступы между сообщениями",
+                style = GlassTypography.BodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                textAlign = androidx.compose.ui.text.style.TextAlign.Center
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                ChatDensity.values().forEach { density ->
+                    val isSelected = selectedDensity == density
+                    GlassButton(
+                        text = density.displayName,
+                        onClick = { onDensityChange(density) },
+                        variant = if (isSelected) GlassButtonVariant.Primary else GlassButtonVariant.Secondary,
+                        fullWidth = false,
+                        leadingIcon = {
+                            if (isSelected) {
+                                Icon(
+                                    imageVector = Icons.Default.Check,
+                                    contentDescription = "Selected",
+                                    tint = Color.White,
+                                    modifier = Modifier.size(16.dp)
+                                )
+                            }
+                        }
+                    )
+                }
             }
         }
     }

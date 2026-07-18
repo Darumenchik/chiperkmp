@@ -2,6 +2,8 @@ package com.chiper.kz.theme
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.preferencesKey
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -71,13 +73,13 @@ class SettingsRepository(private val dataStore: androidx.datastore.core.DataStor
 
     suspend fun setAppTheme(theme: AppTheme) {
         dataStore.edit { prefs ->
-            prefs.mutations().set(THEME_ID_KEY, theme.id)
+            prefs[THEME_ID_KEY] = theme.id
         }
     }
 
     suspend fun setThemeMode(mode: ThemeMode) {
         dataStore.edit { prefs ->
-            prefs.mutations().set(THEME_MODE_KEY, mode.name)
+            prefs[THEME_MODE_KEY] = mode.name
         }
     }
 }

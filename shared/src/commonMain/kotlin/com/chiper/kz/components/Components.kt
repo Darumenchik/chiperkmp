@@ -1,7 +1,9 @@
 package com.chiper.kz.components
 
-export com.chiper.kz.components.CommonComponents
-export com.chiper.kz.components.ChatListItem
-export com.chiper.kz.components.MessageBubble
-export com.chiper.kz.components.glass.*
-export com.chiper.kz.components.chat.*
+@file:JvmName("Components")
+
+import com.chiper.kz.components.CommonComponents
+import com.chiper.kz.components.ChatListItem
+import com.chiper.kz.components.MessageBubble
+import com.chiper.kz.components.glass.*
+import com.chiper.kz.components.chat.*

@@ -144,18 +144,18 @@ fun MediaPickerContent(
                         },
                         leadingIcon = {
                             IconButton(onClick = onClose) {
-                                Icon(Icons.Default.Close, contentDescription = "Закрыть", tint = Color.White)
+                                Icon(Icons.Filled.Close, contentDescription = "Закрыть", tint = Color.White)
                             }
                         },
                         trailingIcons = listOf(
                             {
                                 IconButton(onClick = onCameraClick) {
-                                    Icon(Icons.Default.CameraAlt, contentDescription = "Камера", tint = Color.White)
+                                    Icon(Icons.Filled.CameraAlt, contentDescription = "Камера", tint = Color.White)
                                 }
                             },
                             {
                                 IconButton(onClick = onGalleryClick) {
-                                    Icon(Icons.Default.PhotoLibrary, contentDescription = "Галерея", tint = Color.White)
+                                    Icon(Icons.Filled.PhotoLibrary, contentDescription = "Галерея", tint = Color.White)
                                 }
                             }
                         )
@@ -363,7 +363,7 @@ fun VideoGridItem(
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
-                    imageVector = Icons.Default.PlayCircle,
+                    imageVector = Icons.Filled.PlayCircle,
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.size(32.dp)
@@ -459,10 +459,10 @@ fun FileListItem(
                 contentAlignment = Alignment.Center
             ) {
                 when (item.mimeType) {
-                    "application/pdf" -> Icon(Icons.Default.PictureAsPdf, contentDescription = null, tint = Color(0xFFFF5252), modifier = Modifier.size(24.dp))
-                    "application/zip" -> Icon(Icons.Default.Archive, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(24.dp))
-                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document" -> Icon(Icons.Default.Description, contentDescription = null, tint = Color(0xFF2AABEE), modifier = Modifier.size(24.dp))
-                    else -> Icon(Icons.Default.InsertDriveFile, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(24.dp))
+                    "application/pdf" -> Icon(Icons.Filled.PictureAsPdf, contentDescription = null, tint = Color(0xFFFF5252), modifier = Modifier.size(24.dp))
+                    "application/zip" -> Icon(Icons.Filled.Archive, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(24.dp))
+                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document" -> Icon(Icons.Filled.Description, contentDescription = null, tint = Color(0xFF2AABEE), modifier = Modifier.size(24.dp))
+                    else -> Icon(Icons.Filled.InsertDriveFile, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(24.dp))
                 }
             }
 

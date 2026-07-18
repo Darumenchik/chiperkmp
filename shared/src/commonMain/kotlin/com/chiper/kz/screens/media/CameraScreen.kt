@@ -117,7 +117,7 @@ fun CameraScreenContent(
                             verticalArrangement = Arrangement.Center
                         ) {
                             Icon(
-                                imageVector = Icons.Default.Videocam,
+                                imageVector = Icons.Filled.Videocam,
                                 contentDescription = "Camera Preview",
                                 tint = Color.White.copy(alpha = 0.3f),
                                 modifier = Modifier.size(80.dp)
@@ -147,16 +147,16 @@ fun CameraScreenContent(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         IconButton(onClick = onCancelClick) {
-                            Icon(Icons.Default.Close, contentDescription = "Cancel", tint = Color.White)
+                            Icon(Icons.Filled.Close, contentDescription = "Cancel", tint = Color.White)
                         }
                         Spacer(modifier = Modifier.weight(1f))
                         // Flash toggle
                         GlassIconButton(
                             icon = {
                                 when (state.flashMode) {
-                                    FlashMode.Off -> Icon(Icons.Default.FlashOff, contentDescription = "Flash off", tint = Color.White, modifier = Modifier.size(24.dp))
-                                    FlashMode.On -> Icon(Icons.Default.FlashOn, contentDescription = "Flash on", tint = Color(0xFFFFD700), modifier = Modifier.size(24.dp))
-                                    FlashMode.Auto -> Icon(Icons.Default.FlashAuto, contentDescription = "Flash auto", tint = Color.White, modifier = Modifier.size(24.dp))
+                                    FlashMode.Off -> Icon(Icons.Filled.FlashOff, contentDescription = "Flash off", tint = Color.White, modifier = Modifier.size(24.dp))
+                                    FlashMode.On -> Icon(Icons.Filled.FlashOn, contentDescription = "Flash on", tint = Color(0xFFFFD700), modifier = Modifier.size(24.dp))
+                                    FlashMode.Auto -> Icon(Icons.Filled.FlashAuto, contentDescription = "Flash auto", tint = Color.White, modifier = Modifier.size(24.dp))
                                 }
                             },
                             onClick = { haptic.trigger(HapticType.Selection); onFlashToggle() },
@@ -216,7 +216,7 @@ fun CameraScreenContent(
                     ) {
                         // Gallery
                         GlassIconButton(
-                            icon = { Icon(Icons.Default.PhotoLibrary, contentDescription = "Gallery", tint = Color.White, modifier = Modifier.size(28.dp)) },
+                            icon = { Icon(Icons.Filled.PhotoLibrary, contentDescription = "Gallery", tint = Color.White, modifier = Modifier.size(28.dp)) },
                             onClick = { haptic.trigger(HapticType.Selection); onGalleryClick() },
                             size = 56.dp,
                             variant = GlassButtonVariant.Secondary
@@ -266,7 +266,7 @@ fun CameraScreenContent(
 
                         // Switch camera
                         GlassIconButton(
-                            icon = { Icon(Icons.Default.SwapHoriz, contentDescription = "Switch camera", tint = Color.White, modifier = Modifier.size(28.dp)) },
+                            icon = { Icon(Icons.Filled.SwapHoriz, contentDescription = "Switch camera", tint = Color.White, modifier = Modifier.size(28.dp)) },
                             onClick = { haptic.trigger(HapticType.Selection); onSwitchCamera() },
                             size = 56.dp,
                             variant = GlassButtonVariant.Secondary

@@ -180,28 +180,28 @@ class ProfileScreen : Screen {
                             icon = Icons.Outlined.Notifications,
                             title = "Уведомления",
                             subtitle = "Включены",
-                            trailing = { Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
+                            trailing = { Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
                             onClick = { /* navigate */ }
                         )
                         SettingsItem(
                             icon = Icons.Outlined.Lock,
                             title = "Конфиденциальность",
                             subtitle = "",
-                            trailing = { Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
+                            trailing = { Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
                             onClick = { }
                         )
                         SettingsItem(
                             icon = Icons.Outlined.Palette,
                             title = "Оформление",
                             subtitle = "Светлая тема",
-                            trailing = { Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
+                            trailing = { Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
                             onClick = { }
                         )
                         SettingsItem(
                             icon = Icons.Outlined.Language,
                             title = "Язык",
                             subtitle = "Русский",
-                            trailing = { Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
+                            trailing = { Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
                             onClick = { }
                         )
                     }
@@ -215,7 +215,7 @@ class ProfileScreen : Screen {
                             icon = Icons.Outlined.Security,
                             title = "Безопасность и приватность",
                             subtitle = "Код доступа, 2FA, устройства",
-                            trailing = { Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
+                            trailing = { Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
                             onClick = { }
                         )
                     }
@@ -229,14 +229,14 @@ class ProfileScreen : Screen {
                             icon = Icons.Outlined.Storage,
                             title = "Использование памяти",
                             subtitle = "2.4 ГБ из 64 ГБ",
-                            trailing = { Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
+                            trailing = { Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
                             onClick = { }
                         )
                         SettingsItem(
                             icon = Icons.Outlined.Download,
                             title = "Автозагрузка медиа",
                             subtitle = "Wi-Fi и мобильная сеть",
-                            trailing = { Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
+                            trailing = { Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
                             onClick = { }
                         )
                     }
@@ -250,14 +250,14 @@ class ProfileScreen : Screen {
                             icon = Icons.AutoMirrored.Outlined.HelpOutline,
                             title = "Помощь",
                             subtitle = "",
-                            trailing = { Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
+                            trailing = { Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
                             onClick = { }
                         )
                         SettingsItem(
                             icon = Icons.Outlined.Info,
                             title = "О приложении",
                             subtitle = "Версия 1.0.0",
-                            trailing = { Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
+                            trailing = { Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
                             onClick = { }
                         )
                     }

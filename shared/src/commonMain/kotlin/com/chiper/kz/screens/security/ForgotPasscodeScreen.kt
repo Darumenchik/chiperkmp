@@ -171,7 +171,7 @@ fun ForgotPasscodeContent(
                             contentAlignment = Alignment.Center
                         ) {
                             Icon(
-                                imageVector = Icons.Default.KeyOff,
+                                imageVector = Icons.Filled.KeyOff,
                                 contentDescription = "Forgot passcode",
                                 tint = Color.White,
                                 modifier = Modifier.size(40.dp)

@@ -49,19 +49,19 @@ class ChannelsScreen : Screen {
                         title = "Каналы",
                         leadingIcon = {
                             IconButton(onClick = { navigator.pop() }) {
-                                Icon(Icons.Default.ArrowBack, contentDescription = "Назад", tint = Color.White)
+                                Icon(Icons.Filled.ArrowBack, contentDescription = "Назад", tint = Color.White)
                             }
                         },
                         trailingIcons = listOf(
                             { IconButton(onClick = { viewModel.showSearch() }) {
-                                Icon(Icons.Default.Search, contentDescription = "Поиск", tint = Color.White)
+                                Icon(Icons.Filled.Search, contentDescription = "Поиск", tint = Color.White)
                             } }
                         )
                     )
                 },
                 floatingActionButton = {
                     GlassFAB(
-                        icon = { Icon(Icons.Default.Add, contentDescription = "Создать", tint = Color.White) },
+                        icon = { Icon(Icons.Filled.Add, contentDescription = "Создать", tint = Color.White) },
                         onClick = { viewModel.showCreateChannelDialog() },
                         extendedText = "Новый канал"
                     )
@@ -98,7 +98,7 @@ class ChannelsScreen : Screen {
                                     contentAlignment = Alignment.Center
                                 ) {
                                     Icon(
-                                        Icons.Default.Campaign,
+                                        Icons.Filled.Campaign,
                                         contentDescription = null,
                                         tint = Color(0xFFFBBC05),
                                         modifier = Modifier.size(40.dp)
@@ -124,7 +124,7 @@ class ChannelsScreen : Screen {
                                     onClick = { viewModel.showCreateChannelDialog() },
                                     variant = GlassButtonVariant.Primary,
                                     fullWidth = false,
-                                    leadingIcon = { Icon(Icons.Default.Add, contentDescription = null, tint = Color.White, modifier = Modifier.size(20.dp)) }
+                                    leadingIcon = { Icon(Icons.Filled.Add, contentDescription = null, tint = Color.White, modifier = Modifier.size(20.dp)) }
                                 )
                             }
                         }
@@ -206,7 +206,7 @@ fun ChannelItem(
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
-                    Icons.Default.Campaign,
+                    Icons.Filled.Campaign,
                     contentDescription = null,
                     tint = Color(0xFFFBBC05),
                     modifier = Modifier.size(28.dp)
@@ -234,7 +234,7 @@ fun ChannelItem(
                         )
                         if (channel.isVerified) {
                             Icon(
-                                Icons.Default.Verified,
+                                Icons.Filled.Verified,
                                 contentDescription = "Верифицирован",
                                 tint = TelegramBlue,
                                 modifier = Modifier.size(16.dp)
@@ -279,7 +279,7 @@ fun ChannelItem(
             ) {
                 if (channel.isMuted) {
                     Icon(
-                        Icons.Default.NotificationsOff,
+                        Icons.Filled.NotificationsOff,
                         contentDescription = "Уведомления отключены",
                         tint = TextSecondary.copy(alpha = 0.4f),
                         modifier = Modifier.size(18.dp)

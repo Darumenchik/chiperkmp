@@ -73,7 +73,7 @@ fun MessageBubble(
                     )
                     if (isSent) {
                         Icon(
-                            imageVector = if (message.isRead) Icons.Default.CheckCircle else Icons.Default.Check,
+                            imageVector = if (message.isRead) Icons.Filled.CheckCircle else Icons.Filled.Check,
                             contentDescription = if (message.isRead) "Прочитано" else "Отправлено",
                             modifier = Modifier.size(14.dp),
                             tint = if (message.isRead) TelegramBlue else TextSecondary.copy(alpha = 0.6f)

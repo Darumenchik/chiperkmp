@@ -63,28 +63,28 @@ class OnboardingViewModel : androidx.lifecycle.ViewModel() {
 
     private val pages = listOf(
         OnboardingPage(
-            imageVector = Icons.Default.ChatBubbleOutline,
+            imageVector = Icons.Filled.ChatBubbleOutline,
             title = "Мгновенные сообщения",
             description = "Отправляйте текст, фото, видео и файлы в реальном времени без задержек",
             primaryColor = TelegramBlue,
             secondaryColor = TelegramLightBlue
         ),
         OnboardingPage(
-            imageVector = Icons.Default.Security,
+            imageVector = Icons.Filled.Security,
             title = "Полная приватность",
             description = "Сквозное шифрование, таймеры автоуничтожения и анонимные чаты",
             primaryColor = Color(0xFF4DCD5E),
             secondaryColor = Color(0xFF3CC44D)
         ),
         OnboardingPage(
-            imageVector = Icons.Default.Group,
+            imageVector = Icons.Filled.Group,
             title = "Группы и каналы",
             description = "Создавайте сообщества до 200 000 участников и вещайте для миллионов",
             primaryColor = Color(0xFFFBBC05),
             secondaryColor = Color(0xFFF9A825)
         ),
         OnboardingPage(
-            imageVector = Icons.Default.Speed,
+            imageVector = Icons.Filled.Speed,
             title = "Быстрее всех",
             description = "Распределенная инфраструктура по всему миру — сообщения доходят за миллисекунды",
             primaryColor = Color(0xFF5EB5F7),
@@ -115,28 +115,28 @@ fun OnboardingContent(
 ) {
     val pages = listOf(
         OnboardingPage(
-            imageVector = Icons.Default.ChatBubbleOutline,
+            imageVector = Icons.Filled.ChatBubbleOutline,
             title = "Мгновенные сообщения",
             description = "Отправляйте текст, фото, видео и файлы в реальном времени без задержек",
             primaryColor = TelegramBlue,
             secondaryColor = TelegramLightBlue
         ),
         OnboardingPage(
-            imageVector = Icons.Default.Security,
+            imageVector = Icons.Filled.Security,
             title = "Полная приватность",
             description = "Сквозное шифрование, таймеры автоуничтожения и анонимные чаты",
             primaryColor = Color(0xFF4DCD5E),
             secondaryColor = Color(0xFF3CC44D)
         ),
         OnboardingPage(
-            imageVector = Icons.Default.Group,
+            imageVector = Icons.Filled.Group,
             title = "Группы и каналы",
             description = "Создавайте сообщества до 200 000 участников и вещайте для миллионов",
             primaryColor = Color(0xFFFBBC05),
             secondaryColor = Color(0xFFF9A825)
         ),
         OnboardingPage(
-            imageVector = Icons.Default.Speed,
+            imageVector = Icons.Filled.Speed,
             title = "Быстрее всех",
             description = "Распределенная инфраструктура по всему миру — сообщения доходят за миллисекунды",
             primaryColor = Color(0xFF5EB5F7),
@@ -390,7 +390,7 @@ fun OnboardingContent(
                 GlassButton(
                     text = if (isLast) "Начать" else "Далее",
                     onClick = if (isLast) onGetStarted else onNext,
-                    icon = { Icon(Icons.Default.ArrowForward, contentDescription = null, tint = Color.White, modifier = Modifier.size(20.dp)) },
+                    icon = { Icon(Icons.Filled.ArrowForward, contentDescription = null, tint = Color.White, modifier = Modifier.size(20.dp)) },
                     fullWidth = false
                 )
             }

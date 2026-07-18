@@ -78,13 +78,13 @@ data class ChatScreen(
                         },
                         trailingIcons = listOf(
                             { IconButton(onClick = { }) {
-                                Icon(Icons.Default.Call, contentDescription = "Звонок", tint = Color.White)
+                                Icon(Icons.Filled.Call, contentDescription = "Звонок", tint = Color.White)
                             } },
                             { IconButton(onClick = { }) {
-                                Icon(Icons.Default.Videocam, contentDescription = "Видеозвонок", tint = Color.White)
+                                Icon(Icons.Filled.Videocam, contentDescription = "Видеозвонок", tint = Color.White)
                             } },
                             { IconButton(onClick = { }) {
-                                Icon(Icons.Default.MoreVert, contentDescription = "Ещё", tint = Color.White)
+                                Icon(Icons.Filled.MoreVert, contentDescription = "Ещё", tint = Color.White)
                             } }
                         )
                     )
@@ -214,9 +214,9 @@ data class ChatScreen(
 fun GlassMessageBubble(
     message: Message,
     onReply: ((Message) -> Unit)? = null,
-    onLongPress: (() -> Unit)? = nil,
-    onReactionClick: ((Message, String) -> Unit)? = nil,
-    onReactionAdd: ((Message, String) -> Unit)? = nil,
+    onLongPress: (() -> Unit)? = null,
+    onReactionClick: ((Message, String) -> Unit)? = null,
+    onReactionAdd: ((Message, String) -> Unit)? = null,
     isSelected: Boolean = false,
     showTime: Boolean = true,
     showStatus: Boolean = true,
@@ -295,7 +295,7 @@ fun GlassMessageBubble(
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
-                        imageVector = Icons.Default.Reply,
+                        imageVector = Icons.Filled.Reply,
                         contentDescription = "Reply",
                         tint = MaterialTheme.colorScheme.primary
                     )
@@ -328,7 +328,7 @@ fun GlassMessageBubble(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(
-                        imageVector = Icons.Default.Reply,
+                        imageVector = Icons.Filled.Reply,
                         contentDescription = "Reply",
                         tint = Color.White
                     )
@@ -420,7 +420,7 @@ fun GlassMessageBubble(
                         }
                         if (showStatus && isSent) {
                             Icon(
-                                imageVector = if (message.isRead) Icons.Default.DoneAll else Icons.Default.Done,
+                                imageVector = if (message.isRead) Icons.Filled.DoneAll else Icons.Filled.Done,
                                 contentDescription = if (message.isRead) "Read" else "Sent",
                                 tint = if (message.isRead) MaterialTheme.colorScheme.primary else textColor.copy(alpha = 0.6f),
                                 modifier = Modifier.size(14.dp)
@@ -482,7 +482,7 @@ fun GlassChatInputBar(
             // Attach button
             IconButton(onClick = { onAttachClick?.invoke() }) {
                 Icon(
-                    Icons.Default.AddCircleOutline,
+                    Icons.Filled.AddCircleOutline,
                     contentDescription = "Прикрепить",
                     tint = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.size(28.dp)
@@ -530,7 +530,7 @@ fun GlassChatInputBar(
                     icon = {
                         AnimatedVisibility(visible = isRecording) {
                             Icon(
-                                imageVector = Icons.Default.Stop,
+                                imageVector = Icons.Filled.Stop,
                                 contentDescription = "Остановить запись",
                                 tint = Color(0xFFE53935),
                                 modifier = Modifier.size(24.dp)
@@ -538,7 +538,7 @@ fun GlassChatInputBar(
                         }
                         AnimatedVisibility(visible = !isRecording) {
                             Icon(
-                                imageVector = Icons.Default.Mic,
+                                imageVector = Icons.Filled.Mic,
                                 contentDescription = "Голосовое сообщение",
                                 tint = MaterialTheme.colorScheme.primary,
                                 modifier = Modifier.size(24.dp)

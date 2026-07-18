@@ -269,7 +269,7 @@ fun AuthScreenContent(
                     onClick = onSubmit,
                     fullWidth = true,
                     loading = state.isLoading,
-                    leadingIcon = { Icon(Icons.Default.ArrowForward, contentDescription = null, tint = Color.White, modifier = Modifier.size(20.dp)) }
+                    leadingIcon = { Icon(Icons.Filled.ArrowForward, contentDescription = null, tint = Color.White, modifier = Modifier.size(20.dp)) }
                 )
 
                 Spacer(modifier = Modifier.height(24.dp))

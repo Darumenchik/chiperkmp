@@ -4,6 +4,7 @@ import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.canvas.Canvas
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -39,7 +40,7 @@ fun GlassVoiceMessage(
     modifier: Modifier = Modifier
 ) {
     val isSent = message.isSentByMe
-    val haptic = HapticFeedback.rememberHaptic()
+    val haptic = rememberHapticFeedback()
     val duration = message.voiceDuration.let { if (it > 0 ) it else 30 }
     var progress by remember { mutableStateOf(0f) }
     var animatedProgress by remember { mutableStateOf(0f) }
@@ -138,7 +139,7 @@ fun GlassVoiceMessage(
                 ) {
                     AnimatedVisibility(visible = isPlaying) {
                         Icon(
-                            imageVector = Icons.Default.Pause,
+                            imageVector = Icons.Filled.Pause,
                             contentDescription = "Pause",
                             tint = com.chiper.kz.theme.MaterialTheme.colorScheme.primary,
                             modifier = Modifier.size(20.dp)
@@ -146,7 +147,7 @@ fun GlassVoiceMessage(
                     }
                     AnimatedVisibility(visible = !isPlaying) {
                         Icon(
-                            imageVector = Icons.Default.PlayArrow,
+                            imageVector = Icons.Filled.PlayArrow,
                             contentDescription = "Play",
                             tint = if (isSent) com.chiper.kz.theme.MaterialTheme.colorScheme.onPrimaryContainer else Color.White,
                             modifier = Modifier.size(20.dp)
@@ -215,7 +216,7 @@ fun GlassVoiceMessage(
                 }
                 if (showStatus && isSent) {
                     Icon(
-                        imageVector = if (message.isRead) Icons.Default.DoneAll else Icons.Default.Done,
+                        imageVector = if (message.isRead) Icons.Filled.DoneAll else Icons.Filled.Done,
                         contentDescription = if (message.isRead) "Read" else "Sent",
                         tint = if (message.isRead) com.chiper.kz.theme.MaterialTheme.colorScheme.primary else textColor.copy(alpha = 0.5f),
                         modifier = Modifier.size(14.dp)

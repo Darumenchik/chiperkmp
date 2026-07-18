@@ -48,19 +48,19 @@ class GroupsScreen : Screen {
                         title = "Группы",
                         leadingIcon = {
                             IconButton(onClick = { navigator.pop() }) {
-                                Icon(Icons.Default.ArrowBack, contentDescription = "Назад", tint = Color.White)
+                                Icon(Icons.Filled.ArrowBack, contentDescription = "Назад", tint = Color.White)
                             }
                         },
                         trailingIcons = listOf(
                             { IconButton(onClick = { viewModel.showCreateGroupDialog() }) {
-                                Icon(Icons.Default.Add, contentDescription = "Создать группу", tint = Color.White)
+                                Icon(Icons.Filled.Add, contentDescription = "Создать группу", tint = Color.White)
                             } }
                         )
                     )
                 },
                 floatingActionButton = {
                     GlassFAB(
-                        icon = { Icon(Icons.Default.Add, contentDescription = "Создать", tint = Color.White) },
+                        icon = { Icon(Icons.Filled.Add, contentDescription = "Создать", tint = Color.White) },
                         onClick = { viewModel.showCreateGroupDialog() },
                         extendedText = "Новая группа"
                     )
@@ -97,7 +97,7 @@ class GroupsScreen : Screen {
                                     contentAlignment = Alignment.Center
                                 ) {
                                     Icon(
-                                        Icons.Default.People,
+                                        Icons.Filled.People,
                                         contentDescription = null,
                                         tint = Color(0xFF2AABEE),
                                         modifier = Modifier.size(40.dp)
@@ -123,7 +123,7 @@ class GroupsScreen : Screen {
                                     onClick = { viewModel.showCreateGroupDialog() },
                                     variant = GlassButtonVariant.Primary,
                                     fullWidth = false,
-                                    leadingIcon = { Icon(Icons.Default.GroupAdd, contentDescription = null, tint = Color.White, modifier = Modifier.size(20.dp)) }
+                                    leadingIcon = { Icon(Icons.Filled.GroupAdd, contentDescription = null, tint = Color.White, modifier = Modifier.size(20.dp)) }
                                 )
                             }
                         }

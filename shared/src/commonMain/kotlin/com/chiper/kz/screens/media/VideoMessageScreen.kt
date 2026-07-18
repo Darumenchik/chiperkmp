@@ -128,7 +128,7 @@ fun VideoMessageScreenContent(
                             verticalArrangement = Arrangement.Center
                         ) {
                             Icon(
-                                imageVector = Icons.Default.Videocam,
+                                imageVector = Icons.Filled.Videocam,
                                 contentDescription = "Video Recording",
                                 tint = Color.White.copy(alpha = 0.3f),
                                 modifier = Modifier.size(80.dp)
@@ -158,15 +158,15 @@ fun VideoMessageScreenContent(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         IconButton(onClick = { onCancel() }) {
-                            Icon(Icons.Default.Close, contentDescription = "Cancel", tint = Color.White)
+                            Icon(Icons.Filled.Close, contentDescription = "Cancel", tint = Color.White)
                         }
                         Spacer(modifier = Modifier.weight(1f))
                         GlassIconButton(
                             icon = {
                                 when (state.flashMode) {
-                                    FlashMode.Off -> Icon(Icons.Default.FlashOff, contentDescription = "Flash off", tint = Color.White, modifier = Modifier.size(24.dp))
-                                    FlashMode.On -> Icon(Icons.Default.FlashOn, contentDescription = "Flash on", tint = Color(0xFFFFD700), modifier = Modifier.size(24.dp))
-                                    FlashMode.Auto -> Icon(Icons.Default.FlashAuto, contentDescription = "Flash auto", tint = Color.White, modifier = Modifier.size(24.dp))
+                                    FlashMode.Off -> Icon(Icons.Filled.FlashOff, contentDescription = "Flash off", tint = Color.White, modifier = Modifier.size(24.dp))
+                                    FlashMode.On -> Icon(Icons.Filled.FlashOn, contentDescription = "Flash on", tint = Color(0xFFFFD700), modifier = Modifier.size(24.dp))
+                                    FlashMode.Auto -> Icon(Icons.Filled.FlashAuto, contentDescription = "Flash auto", tint = Color.White, modifier = Modifier.size(24.dp))
                                 }
                             },
                             onClick = { haptic.trigger(HapticType.Selection); onFlashToggle() },
@@ -221,7 +221,7 @@ fun VideoMessageScreenContent(
                     ) {
                         // Switch camera
                         GlassIconButton(
-                            icon = { Icon(Icons.Default.SwapHoriz, contentDescription = "Switch camera", tint = Color.White, modifier = Modifier.size(28.dp)) },
+                            icon = { Icon(Icons.Filled.SwapHoriz, contentDescription = "Switch camera", tint = Color.White, modifier = Modifier.size(28.dp)) },
                             onClick = { haptic.trigger(HapticType.Selection); onSwitchCamera() },
                             size = 56.dp,
                             variant = GlassButtonVariant.Secondary
@@ -286,7 +286,7 @@ fun VideoMessageScreenContent(
 
                         // Cancel/Delete
                         GlassIconButton(
-                            icon = { Icon(Icons.Default.Delete, contentDescription = "Delete", tint = Color.White, modifier = Modifier.size(28.dp)) },
+                            icon = { Icon(Icons.Filled.Delete, contentDescription = "Delete", tint = Color.White, modifier = Modifier.size(28.dp)) },
                             onClick = { haptic.trigger(HapticType.Heavy); onCancel() },
                             size = 56.dp,
                             variant = GlassButtonVariant.Destructive

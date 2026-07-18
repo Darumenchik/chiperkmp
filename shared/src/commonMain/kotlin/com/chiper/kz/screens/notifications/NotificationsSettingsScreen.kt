@@ -121,7 +121,7 @@ fun NotificationsSettingsContent(
                         title = "Уведомления",
                         leadingIcon = {
                             IconButton(onClick = onClose) {
-                                Icon(Icons.Default.ArrowBack, contentDescription = "Назад", tint = Color.White)
+                                Icon(Icons.Filled.ArrowBack, contentDescription = "Назад", tint = Color.White)
                             }
                         }
                     )
@@ -182,7 +182,7 @@ fun NotificationsSettingsContent(
                             title = "Звук уведомлений",
                             subtitle = state.selectedSound,
                             trailing = {
-                                Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp))
+                                Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp))
                             },
                             onClick = { onSoundClick() }
                         )
@@ -215,7 +215,7 @@ fun NotificationsSettingsContent(
                             title = "Уведомления для каждого чата",
                             subtitle = "Настроить индивидуально",
                             trailing = {
-                                Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp))
+                                Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp))
                             },
                             onClick = onPerChatClick
                         )
@@ -232,7 +232,7 @@ fun NotificationsSettingsContent(
                             title = "Режим \"Не беспокоить\"",
                             subtitle = state.dndSchedule?.let { "Расписание: $it" } ?: "Выключен",
                             trailing = {
-                                Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp))
+                                Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp))
                             },
                             onClick = onDNDClick
                         )
@@ -242,7 +242,7 @@ fun NotificationsSettingsContent(
                             title = "Расписание",
                             subtitle = "Настроить автоматическое включение",
                             trailing = {
-                                Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp))
+                                Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp))
                             },
                             onClick = { /* Navigate to DND schedule */ }
                         )
@@ -406,7 +406,7 @@ fun SoundPickerDialog(
                             Text(text = sound, style = GlassTypography.BodyLarge)
                             if (selected) {
                                 Icon(
-                                    imageVector = Icons.Default.CheckCircle,
+                                    imageVector = Icons.Filled.CheckCircle,
                                     contentDescription = "Selected",
                                     tint = TelegramBlue
                                 )

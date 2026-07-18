@@ -168,7 +168,7 @@ fun TwoFAScreenContent(
                         title = "Двухфакторная аутентификация",
                         leadingIcon = {
                             IconButton(onClick = onClose) {
-                                Icon(Icons.Default.ArrowBack, contentDescription = "Назад", tint = Color.White)
+                                Icon(Icons.Filled.ArrowBack, contentDescription = "Назад", tint = Color.White)
                             }
                         }
                     )
@@ -229,7 +229,7 @@ fun DisabledContent(onEnableClick: () -> Unit, haptic: HapticFeedback) {
             elevation = GlassElevation.Floating
         ) {
             Icon(
-                imageVector = Icons.Default.Security,
+                imageVector = Icons.Filled.Security,
                 contentDescription = "2FA",
                 tint = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.size(48.dp)
@@ -257,7 +257,7 @@ fun DisabledContent(onEnableClick: () -> Unit, haptic: HapticFeedback) {
             },
             variant = GlassButtonVariant.Primary,
             fullWidth = false,
-            leadingIcon = { Icon(Icons.Default.Shield, contentDescription = null, tint = Color.White, modifier = Modifier.size(20.dp)) }
+            leadingIcon = { Icon(Icons.Filled.Shield, contentDescription = null, tint = Color.White, modifier = Modifier.size(20.dp)) }
         )
     }
 }
@@ -312,7 +312,7 @@ fun SetupContent(
                         verticalArrangement = Arrangement.Center
                     ) {
                         Icon(
-                            imageVector = Icons.Default.QrCode,
+                            imageVector = Icons.Filled.QrCode,
                             contentDescription = "QR Code",
                             tint = MaterialTheme.colorScheme.onSurface,
                             modifier = Modifier.size(100.dp)
@@ -420,7 +420,7 @@ fun EnabledContent(
             elevation = GlassElevation.Floating
         ) {
             Icon(
-                imageVector = Icons.Default.Verified,
+                imageVector = Icons.Filled.Verified,
                 contentDescription = "2FA Enabled",
                 tint = MaterialTheme.colorScheme.success,
                 modifier = Modifier.size(48.dp)
@@ -448,14 +448,14 @@ fun EnabledContent(
                 onClick = { haptic.trigger(HapticType.Selection); onBackupCodeClick() },
                 variant = GlassButtonVariant.Secondary,
                 fullWidth = false,
-                leadingIcon = { Icon(Icons.Default.Key, contentDescription = null, tint = MaterialTheme.colorScheme.onSurface, modifier = Modifier.size(20.dp)) }
+                leadingIcon = { Icon(Icons.Filled.Key, contentDescription = null, tint = MaterialTheme.colorScheme.onSurface, modifier = Modifier.size(20.dp)) }
             )
             GlassButton(
                 text = "Отключить",
                 onClick = { haptic.trigger(HapticType.Medium); onDisableClick() },
                 variant = GlassButtonVariant.Destructive,
                 fullWidth = false,
-                leadingIcon = { Icon(Icons.Default.LockOpen, contentDescription = null, tint = Color.White, modifier = Modifier.size(20.dp)) }
+                leadingIcon = { Icon(Icons.Filled.LockOpen, contentDescription = null, tint = Color.White, modifier = Modifier.size(20.dp)) }
             )
         }
     }
@@ -549,7 +549,7 @@ fun DisableConfirmContent(
             elevation = GlassElevation.Floating
         ) {
             Icon(
-                imageVector = Icons.Default.Warning,
+                imageVector = Icons.Filled.Warning,
                 contentDescription = "Warning",
                 tint = MaterialTheme.colorScheme.error,
                 modifier = Modifier.size(48.dp)
@@ -644,7 +644,7 @@ fun BackupCodesContent(
                                     )
                                 )
                                 Icon(
-                                    imageVector = Icons.Default.ContentCopy,
+                                    imageVector = Icons.Filled.ContentCopy,
                                     contentDescription = "Копировать",
                                     tint = MaterialTheme.colorScheme.primary
                                 )
@@ -675,7 +675,7 @@ fun VirtualKeypad(
                         Box(modifier = Modifier.size(68.dp))
                     } else if (key == "⌫") {
                         GlassIconButton(
-                            icon = { Icon(Icons.Default.Backspace, contentDescription = "Удалить", tint = MaterialTheme.colorScheme.onSurface) },
+                            icon = { Icon(Icons.Filled.Backspace, contentDescription = "Удалить", tint = MaterialTheme.colorScheme.onSurface) },
                             onClick = { haptic.trigger(HapticType.Light); onDeleteClick() },
                             size = 68.dp
                         )

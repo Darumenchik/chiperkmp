@@ -14,11 +14,14 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.Dp
 import com.chiper.kz.theme.*
-import com.chiper.kz.theme.glass.*
+import com.chiper.kz.theme.glass.GlassSurface
+import com.chiper.kz.theme.glass.GlassShapes
+import com.chiper.kz.theme.glass.GlassElevation
+import com.chiper.kz.theme.glass.GlassTypography
 import com.chiper.kz.components.glass.GlassButton
 import com.chiper.kz.components.glass.GlassButtonVariant
-import com.chiper.kz.components.glass.GlassSurface
 
 @Composable
 fun FontScaleSelector(
@@ -190,7 +193,7 @@ fun LandscapeModeNotice() {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
-                imageVector = Icons.Default.ScreenRotation,
+                imageVector = Icons.Filled.ScreenRotation,
                 contentDescription = "Landscape",
                 tint = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.size(24.dp)
@@ -268,7 +271,7 @@ fun ChatDensitySelector(
                         leadingIcon = {
                             if (isSelected) {
                                 Icon(
-                                    imageVector = Icons.Default.Check,
+                                    imageVector = Icons.Filled.Check,
                                     contentDescription = "Selected",
                                     tint = Color.White,
                                     modifier = Modifier.size(16.dp)

@@ -212,9 +212,9 @@ fun ChatTopAppBar(
             }
         },
         trailingIcons = listOf(
-            { IconButton(onClick = onCallClick) { Icon(Icons.Default.Call, contentDescription = "Звонок", tint = Color.White) } },
-            { IconButton(onClick = onVideoClick) { Icon(Icons.Default.Videocam, contentDescription = "Видеозвонок", tint = Color.White) } },
-            { IconButton(onClick = onMenuClick) { Icon(Icons.Default.MoreVert, contentDescription = "Меню", tint = Color.White) } }
+            { IconButton(onClick = onCallClick) { Icon(Icons.Filled.Call, contentDescription = "Звонок", tint = Color.White) } },
+            { IconButton(onClick = onVideoClick) { Icon(Icons.Filled.Videocam, contentDescription = "Видеозвонок", tint = Color.White) } },
+            { IconButton(onClick = onMenuClick) { Icon(Icons.Filled.MoreVert, contentDescription = "Меню", tint = Color.White) } }
         )
     )
 }
@@ -321,7 +321,7 @@ fun EnhancedMessageBubble(
                     horizontalArrangement = Arrangement.spacedBy(4.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Icon(Icons.Default.Reply, contentDescription = "Reply", tint = Color.White)
+                    Icon(Icons.Filled.Reply, contentDescription = "Reply", tint = Color.White)
                     Text(text = "Ответить", color = Color.White, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
                 }
             }
@@ -408,7 +408,7 @@ fun EnhancedMessageBubble(
                     )
                     if (isSent) {
                         Icon(
-                            imageVector = if (message.isRead) Icons.Default.DoneAll else Icons.Default.Done,
+                            imageVector = if (message.isRead) Icons.Filled.DoneAll else Icons.Filled.Done,
                             contentDescription = if (message.isRead) "Прочитано" else "Отправлено",
                             modifier = Modifier.size(14.dp),
                             tint = if (message.isRead) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.6f)
@@ -574,7 +574,7 @@ fun VirtualKeypad(
                         Box(modifier = Modifier.size(68.dp))
                     } else if (key == "⌫") {
                         GlassIconButton(
-                            icon = { Icon(Icons.Default.Backspace, contentDescription = "Удалить", tint = MaterialTheme.colorScheme.onSurface) },
+                            icon = { Icon(Icons.Filled.Backspace, contentDescription = "Удалить", tint = MaterialTheme.colorScheme.onSurface) },
                             onClick = { haptic.trigger(HapticType.Light); onDeleteClick() },
                             size = 68.dp
                         )

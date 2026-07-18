@@ -271,7 +271,7 @@ fun PasscodeScreenContent(
                         GlassIconButton(
                             icon = {
                                 Icon(
-                                    imageVector = Icons.Default.Fingerprint,
+                                    imageVector = Icons.Filled.Fingerprint,
                                     contentDescription = "Fingerprint",
                                     tint = MaterialTheme.colorScheme.primary,
                                     modifier = Modifier.size(24.dp)
@@ -347,7 +347,7 @@ fun VirtualKeypad(
                         Box(modifier = Modifier.size(68.dp))
                     } else if (key == "⌫") {
                         GlassIconButton(
-                            icon = { Icon(Icons.Default.Backspace, contentDescription = "Удалить", tint = MaterialTheme.colorScheme.onSurface) },
+                            icon = { Icon(Icons.Filled.Backspace, contentDescription = "Удалить", tint = MaterialTheme.colorScheme.onSurface) },
                             onClick = { haptic.trigger(HapticType.Light); onDeleteClick() },
                             size = 68.dp
                         )

@@ -154,7 +154,7 @@ data class IncomingCallScreen(
                                 contentAlignment = Alignment.Center
                             ) {
                                 Icon(
-                                    imageVector = Icons.Default.CallEnd,
+                                    imageVector = Icons.Filled.CallEnd,
                                     contentDescription = "Decline",
                                     tint = Color.White,
                                     modifier = Modifier.size(32.dp)
@@ -206,7 +206,7 @@ data class IncomingCallScreen(
                                 contentAlignment = Alignment.Center
                             ) {
                                 Icon(
-                                    imageVector = if (isVideo) Icons.Default.Videocam else Icons.Default.Call,
+                                    imageVector = if (isVideo) Icons.Filled.Videocam else Icons.Filled.Call,
                                     contentDescription = "Accept",
                                     tint = Color.White,
                                     modifier = Modifier.size(32.dp)
@@ -312,7 +312,7 @@ fun OutgoingCallScreen(
                         contentAlignment = Alignment.Center
                     ) {
                         Icon(
-                            imageVector = Icons.Default.CallEnd,
+                            imageVector = Icons.Filled.CallEnd,
                             contentDescription = "Cancel",
                             tint = Color.White,
                             modifier = Modifier.size(32.dp)
@@ -425,21 +425,21 @@ fun ActiveCallScreen(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         CallControlButton(
-                            icon = if (isMuted) Icons.Default.MicOff else Icons.Default.Mic,
+                            icon = if (isMuted) Icons.Filled.MicOff else Icons.Filled.Mic,
                             label = "Микрофон",
                             isActive = isMuted,
                             onClick = { haptic.trigger(HapticType.Selection); onMuteToggle() },
                             haptic = rememberHapticFeedback()
                         )
                         CallControlButton(
-                            icon = if (isVideo && isCameraOff) Icons.Default.VideocamOff else Icons.Default.Videocam,
+                            icon = if (isVideo && isCameraOff) Icons.Filled.VideocamOff else Icons.Filled.Videocam,
                             label = isVideo ? "Камера" : "Видео",
                             isActive = isVideo && isCameraOff,
                             onClick = { haptic.trigger(HapticType.Selection); if (isVideo) onCameraToggle() else onFlipCamera() },
                             haptic = rememberHapticFeedback()
                         )
                         CallControlButton(
-                            icon = if (isSpeakerOn) Icons.Default.VolumeUp else Icons.Default.VolumeOff,
+                            icon = if (isSpeakerOn) Icons.Filled.VolumeUp else Icons.Filled.VolumeOff,
                             label = "Динамик",
                             isActive = isSpeakerOn,
                             onClick = { haptic.trigger(HapticType.Selection); onSpeakerToggle() },
@@ -475,7 +475,7 @@ fun ActiveCallScreen(
                             contentAlignment = Alignment.Center
                         ) {
                             Icon(
-                                imageVector = Icons.Default.CallEnd,
+                                imageVector = Icons.Filled.CallEnd,
                                 contentDescription = "End call",
                                 tint = Color.White,
                                 modifier = Modifier.size(32.dp)

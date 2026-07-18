@@ -122,7 +122,7 @@ fun DeviceManagementContent(
                         title = "Управление устройствами",
                         leadingIcon = {
                             IconButton(onClick = onClose) {
-                                Icon(Icons.Default.ArrowBack, contentDescription = "Назад", tint = Color.White)
+                                Icon(Icons.Filled.ArrowBack, contentDescription = "Назад", tint = Color.White)
                             }
                         },
                         trailingIcons = listOf(
@@ -131,7 +131,7 @@ fun DeviceManagementContent(
                                     haptic.trigger(HapticType.Warning)
                                     // Show revoke all dialog
                                 }) {
-                                    Icon(Icons.Default.Logout, contentDescription = "Выйти со всех", tint = Color.White)
+                                    Icon(Icons.Filled.Logout, contentDescription = "Выйти со всех", tint = Color.White)
                                 }
                             }
                         )
@@ -179,7 +179,7 @@ fun DeviceManagementContent(
                                                 contentAlignment = Alignment.Center
                                             ) {
                                                 Icon(
-                                                    imageVector = Icons.Default.PhoneAndroid,
+                                                    imageVector = Icons.Filled.PhoneAndroid,
                                                     contentDescription = null,
                                                     tint = MaterialTheme.colorScheme.primary,
                                                     modifier = Modifier.size(28.dp)
@@ -250,7 +250,7 @@ fun DeviceManagementContent(
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             Icon(
-                                imageVector = Icons.Default.Devices,
+                                imageVector = Icons.Filled.Devices,
                                 contentDescription = null,
                                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
                                 modifier = Modifier.size(48.dp)
@@ -296,7 +296,7 @@ fun DeviceManagementContent(
                                 },
                                 variant = GlassButtonVariant.Destructive,
                                 fullWidth = true,
-                                leadingIcon = { Icon(Icons.Default.Logout, contentDescription = null, tint = Color.White, modifier = Modifier.size(20.dp)) }
+                                leadingIcon = { Icon(Icons.Filled.Logout, contentDescription = null, tint = Color.White, modifier = Modifier.size(20.dp)) }
                             )
                         }
                     }
@@ -349,11 +349,11 @@ fun DeviceItem(
                 contentAlignment = Alignment.Center
             ) {
                 when (device.platform.lowercase()) {
-                    "android" -> Icon(Icons.Default.PhoneAndroid, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(24.dp))
-                    "ios" -> Icon(Icons.Default.PhoneIphone, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(24.dp))
-                    "macos" -> Icon(Icons.Default.Computer, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(24.dp))
-                    "windows" -> Icon(Icons.Default.DesktopMac, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(24.dp))
-                    else -> Icon(Icons.Default.Devices, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(24.dp))
+                    "android" -> Icon(Icons.Filled.PhoneAndroid, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(24.dp))
+                    "ios" -> Icon(Icons.Filled.PhoneIphone, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(24.dp))
+                    "macos" -> Icon(Icons.Filled.Computer, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(24.dp))
+                    "windows" -> Icon(Icons.Filled.DesktopMac, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(24.dp))
+                    else -> Icon(Icons.Filled.Devices, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(24.dp))
                 }
             }
 
@@ -375,7 +375,7 @@ fun DeviceItem(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 IconButton(onClick = { haptic.trigger(HapticType.Selection); onRename() }) {
-                    Icon(Icons.Default.Edit, contentDescription = "Переименовать", tint = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Icon(Icons.Filled.Edit, contentDescription = "Переименовать", tint = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
                 IconButton(
                     onClick = {
@@ -384,14 +384,14 @@ fun DeviceItem(
                     }
                 ) {
                     Icon(
-                        imageVector = Icons.Default.Delete,
+                        imageVector = Icons.Filled.Delete,
                         contentDescription = "Отозвать доступ",
                         tint = MaterialTheme.colorScheme.error
                     )
                 }
                 IconButton(onClick = { expanded = !expanded }) {
                     Icon(
-                        imageVector = Icons.Default.ExpandMore,
+                        imageVector = Icons.Filled.ExpandMore,
                         contentDescription = "Подробнее",
                         tint = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier

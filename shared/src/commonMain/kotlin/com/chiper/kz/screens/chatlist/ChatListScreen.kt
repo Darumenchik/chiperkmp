@@ -88,13 +88,13 @@ class ChatListScreen : Screen {
                         leadingIcon = if (searchActive) {
                             {
                                 IconButton(onClick = { searchActive = false; searchText = TextFieldValue("") }) {
-                                    Icon(Icons.Default.Close, contentDescription = "Закрыть", tint = Color.White)
+                                    Icon(Icons.Filled.Close, contentDescription = "Закрыть", tint = Color.White)
                                 }
                             }
                         } else {
                             {
                                 IconButton(onClick = { navigator.push(com.chiper.kz.navigation.Screen.Groups) }) {
-                                    Icon(Icons.Default.Groups, contentDescription = "Группы", tint = Color.White)
+                                    Icon(Icons.Filled.Groups, contentDescription = "Группы", tint = Color.White)
                                 }
                             }
                         },
@@ -102,7 +102,7 @@ class ChatListScreen : Screen {
                             {
                                 IconButton(onClick = { searchActive = !searchActive }) {
                                     Icon(
-                                        if (searchActive) Icons.Default.Close else Icons.Default.Search,
+                                        if (searchActive) Icons.Filled.Close else Icons.Filled.Search,
                                         contentDescription = if (searchActive) "Закрыть" else "Поиск",
                                         tint = Color.White
                                     )
@@ -110,7 +110,7 @@ class ChatListScreen : Screen {
                             },
                             {
                                 IconButton(onClick = { navigator.push(com.chiper.kz.navigation.Screen.Channels) }) {
-                                    Icon(Icons.Default.Campaign, contentDescription = "Каналы", tint = Color.White)
+                                    Icon(Icons.Filled.Campaign, contentDescription = "Каналы", tint = Color.White)
                                 }
                             }
                         )
@@ -127,7 +127,7 @@ class ChatListScreen : Screen {
                         shape = CircleShape
                     ) {
                         Icon(
-                            Icons.Default.Edit,
+                            Icons.Filled.Edit,
                             contentDescription = "Новый чат",
                             modifier = Modifier.rotate(fabRotation)
                         )
@@ -203,7 +203,7 @@ class ChatListScreen : Screen {
                                 ),
                                 leadingIcon = {
                                     Icon(
-                                        Icons.Default.Search,
+                                        Icons.Filled.Search,
                                         contentDescription = "Поиск",
                                         tint = Color.White
                                     )

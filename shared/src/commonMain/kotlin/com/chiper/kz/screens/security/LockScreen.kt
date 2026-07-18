@@ -210,7 +210,7 @@ fun LockScreenContent(
                     GlassIconButton(
                         icon = {
                             Icon(
-                                imageVector = Icons.Default.Fingerprint,
+                                imageVector = Icons.Filled.Fingerprint,
                                 contentDescription = "Fingerprint",
                                 tint = Color.White,
                                 modifier = Modifier.size(24.dp)

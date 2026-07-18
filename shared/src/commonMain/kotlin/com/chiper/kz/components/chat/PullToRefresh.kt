@@ -74,7 +74,7 @@ fun PullToRefresh(
                             contentAlignment = Alignment.Center
                         ) {
                             Icon(
-                                imageVector = Icons.Default.ArrowDownward,
+                                imageVector = Icons.Filled.ArrowDownward,
                                 contentDescription = "Pull to refresh",
                                 tint = MaterialTheme.colorScheme.primary
                             )
@@ -171,7 +171,7 @@ fun RefreshHeader(
                         InfiniteSpinner(color = MaterialTheme.colorScheme.primary)
                     } else {
                         Icon(
-                            imageVector = Icons.Default.ArrowDownward,
+                            imageVector = Icons.Filled.ArrowDownward,
                             contentDescription = "Pull to refresh",
                             tint = MaterialTheme.colorScheme.primary.copy(alpha = progress)
                         )

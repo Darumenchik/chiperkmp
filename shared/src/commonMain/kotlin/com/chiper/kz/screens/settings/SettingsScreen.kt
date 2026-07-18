@@ -51,7 +51,7 @@ class SettingsScreen : Screen {
                             title = "Настройки",
                             leadingIcon = {
                                 IconButton(onClick = { navigator.pop() }) {
-                                    Icon(Icons.Default.ArrowBack, contentDescription = "Назад", tint = Color.White)
+                                    Icon(Icons.Filled.ArrowBack, contentDescription = "Назад", tint = Color.White)
                                 }
                             }
                         }
@@ -69,21 +69,21 @@ class SettingsScreen : Screen {
                             icon = Icons.Outlined.Person,
                             title = "Профиль",
                             subtitle = state.userName,
-                            trailing = { Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
+                            trailing = { Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
                             onClick = { navigator.push(com.chiper.kz.navigation.Screen.Profile) }
                         )
                         SettingsItem(
                             icon = Icons.Outlined.Security,
                             title = "Безопасность и приватность",
                             subtitle = "Код доступа, 2FA, устройства",
-                            trailing = { Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
+                            trailing = { Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
                             onClick = { navigator.push(com.chiper.kz.screens.security.SecuritySettingsScreen()) }
                         )
                         SettingsItem(
                             icon = Icons.Outlined.Notifications,
                             title = "Уведомления",
                             subtitle = "Звуки, вибрация, превью",
-                            trailing = { Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
+                            trailing = { Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
                             onClick = { /* navigator.push(NotificationsSettingsScreen()) */ }
                         )
                     )
@@ -97,7 +97,7 @@ class SettingsScreen : Screen {
                             title = "Плотность сообщений",
                             subtitle = state.chatDensity.displayName,
                             trailing = {
-                                Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp))
+                                Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp))
                             },
                             onClick = { /* show density picker */ }
                         )
@@ -106,7 +106,7 @@ class SettingsScreen : Screen {
                             title = "Размер шрифта",
                             subtitle = "${(state.fontScale * 100).toInt()}%",
                             trailing = {
-                                Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp))
+                                Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp))
                             },
                             onClick = { /* show font scale picker */ }
                         )
@@ -114,14 +114,14 @@ class SettingsScreen : Screen {
                             icon = Icons.Outlined.Wallpaper,
                             title = "Обои чата",
                             subtitle = "Свой фон для каждого чата",
-                            trailing = { Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
+                            trailing = { Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
                             onClick = { /* navigator.push(WallpaperSettingsScreen()) */ }
                         )
                         SettingsItem(
                             icon = Icons.Outlined.Translate,
                             title = "Язык приложения",
                             subtitle = "Русский",
-                            trailing = { Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
+                            trailing = { Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
                             onClick = { /* navigator.push(LanguageSettingsScreen()) */ }
                         )
                     }
@@ -138,14 +138,14 @@ class SettingsScreen : Screen {
                                 is com.chiper.kz.theme.ThemeMode.Dark -> "Тёмная"
                                 is com.chiper.kz.theme.ThemeMode.System -> "По системе"
                             },
-                            trailing = { Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
+                            trailing = { Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
                             onClick = { /* navigator.push(ThemeSettingsScreen()) */ }
                         )
                         SettingsItem(
                             icon = Icons.Outlined.ColorLens,
                             title = "Цветовая схема",
                             subtitle = state.currentTheme.name,
-                            trailing = { Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
+                            trailing = { Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
                             onClick = { /* navigator.push(ColorSchemeSettingsScreen()) */ }
                         )
                         SettingsItem(
@@ -174,21 +174,21 @@ class SettingsScreen : Screen {
                             icon = Icons.Outlined.Storage,
                             title = "Использование памяти",
                             subtitle = "2.4 ГБ из 64 ГБ",
-                            trailing = { Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
+                            trailing = { Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
                             onClick = { /* navigator.push(StorageUsageScreen()) */ }
                         )
                         SettingsItem(
                             icon = Icons.Outlined.Download,
                             title = "Автозагрузка медиа",
                             subtitle = "Wi-Fi и мобильная сеть",
-                            trailing = { Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
+                            trailing = { Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
                             onClick = { /* navigator.push(AutoDownloadSettingsScreen()) */ }
                         )
                         SettingsItem(
                             icon = Icons.Outlined.DeleteForever,
                             title = "Очистить кэш",
                             subtitle = "Освободить место",
-                            trailing = { Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
+                            trailing = { Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
                             onClick = { /* show clear cache dialog */ }
                         )
                     }
@@ -201,21 +201,21 @@ class SettingsScreen : Screen {
                             icon = Icons.Outlined.Flag,
                             title = "Язык интерфейса",
                             subtitle = "Русский",
-                            trailing = { Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
+                            trailing = { Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
                             onClick = { /* navigator.push(LanguageSettingsScreen()) */ }
                         )
                         SettingsItem(
                             icon = Icons.Outlined.Info,
                             title = "О приложении",
                             subtitle = "Версия 1.0.0",
-                            trailing = { Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
+                            trailing = { Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
                             onClick = { /* show about dialog */ }
                         )
                         SettingsItem(
                             icon = Icons.Outlined.Help,
                             title = "Помощь и поддержка",
                             subtitle = "FAQ, обратная связь",
-                            trailing = { Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
+                            trailing = { Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp)) },
                             onClick = { /* navigator.push(HelpScreen()) */ }
                         )
                     }

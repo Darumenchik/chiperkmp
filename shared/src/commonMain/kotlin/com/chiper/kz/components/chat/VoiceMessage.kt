@@ -4,6 +4,7 @@ import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -30,7 +31,7 @@ import kotlinx.coroutines.delay
 fun VoiceMessageBubble(
     message: Message,
     onPlayClick: () -> Unit,
-    onLongPress: (() -> Unit)? = nil,
+    onLongPress: (() -> Unit)? = null,
     isPlaying: Boolean = false,
     currentPosition: Float = 0f, // 0 to 1
     modifier: Modifier = Modifier
@@ -117,7 +118,7 @@ fun VoiceMessageBubble(
                             }
                         ) { target ->
                             Icon(
-                                imageVector = if (target) Icons.Default.Pause else Icons.Default.PlayArrow,
+                                imageVector = if (target) Icons.Filled.Pause else Icons.Filled.PlayArrow,
                                 contentDescription = if (target) "Pause" else "Play",
                                 tint = if (isSent) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSurfaceVariant,
                                 modifier = Modifier.size(24.dp)
@@ -304,7 +305,7 @@ fun VoiceRecorder(
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
-                        imageVector = if (isRecording) Icons.Default.Stop else Icons.Default.Mic,
+                        imageVector = if (isRecording) Icons.Filled.Stop else Icons.Filled.Mic,
                         contentDescription = if (isRecording) "Stop recording" else "Start recording",
                         tint = Color.White,
                         modifier = Modifier.size(32.dp)
@@ -332,7 +333,7 @@ fun VoiceRecorder(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Icon(
-                            imageVector = Icons.Default.KeyboardArrowLeft,
+                            imageVector = Icons.Filled.KeyboardArrowLeft,
                             contentDescription = "Slide",
                             tint = Color.White.copy(alpha = 0.7f)
                         )
@@ -342,7 +343,7 @@ fun VoiceRecorder(
                             color = Color.White.copy(alpha = 0.7f)
                         )
                         Icon(
-                            imageVector = Icons.Default.KeyboardArrowRight,
+                            imageVector = Icons.Filled.KeyboardArrowRight,
                             contentDescription = "Slide",
                             tint = Color.White.copy(alpha = 0.7f)
                         )

@@ -7,10 +7,12 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.gestures.drag
 import androidx.compose.foundation.gestures.pointerInput
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.ArrowDownward
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -137,11 +139,11 @@ fun GlassMessageBubble(
                         .wrapContentSize(Alignment.Center),
                     contentAlignment = Alignment.Center
                 ) {
-                    Icon(
-                        imageVector = Icons.Default.Reply,
-                        contentDescription = "Reply",
-                        tint = MaterialTheme.colorScheme.primary
-                    )
+Icon(
+    imageVector = Icons.Filled.Reply,
+    contentDescription = "Reply",
+    tint = MaterialTheme.colorScheme.primary
+)
                 }
             }
         }
@@ -169,11 +171,11 @@ fun GlassMessageBubble(
                     horizontalArrangement = Arrangement.spacedBy(4.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Icon(
-                        imageVector = Icons.Default.Reply,
-                        contentDescription = "Reply",
-                        tint = Color.White
-                    )
+Icon(
+    imageVector = Icons.Filled.Reply,
+    contentDescription = "Reply",
+    tint = Color.White
+)
                     Text(
                         text = "Ответить",
                         color = Color.White,
@@ -243,12 +245,12 @@ fun GlassMessageBubble(
                             )
                         }
                         if (showStatus && isSent) {
-                            Icon(
-                                imageVector = if (message.isRead) Icons.Default.DoneAll else Icons.Default.Done,
-                                contentDescription = if (message.isRead) "Read" else "Sent",
-                                tint = if (message.isRead) MaterialTheme.colorScheme.primary else textColor.copy(alpha = 0.6f),
-                                modifier = Modifier.size(14.dp)
-                            )
+Icon(
+    imageVector = if (message.isRead) Icons.Filled.DoneAll else Icons.Filled.Done,
+    contentDescription = if (message.isRead) "Read" else "Sent",
+    tint = if (message.isRead) MaterialTheme.colorScheme.primary else textColor.copy(alpha = 0.6f),
+    modifier = Modifier.size(14.dp)
+)
                         }
                     }
                 }

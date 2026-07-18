@@ -123,7 +123,7 @@ fun SecuritySettingsContent(
                         title = "Безопасность и приватность",
                         leadingIcon = {
                             IconButton(onClick = { /* navigator.pop() */ }) {
-                                Icon(Icons.Default.ArrowBack, contentDescription = "Назад", tint = Color.White)
+                                Icon(Icons.Filled.ArrowBack, contentDescription = "Назад", tint = Color.White)
                             }
                         }
                     )
@@ -143,7 +143,7 @@ fun SecuritySettingsContent(
                             trailing = {
                                 if (state.passcodeEnabled) {
                                     GlassIconButton(
-                                        icon = { Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(18.dp)) },
+                                        icon = { Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(18.dp)) },
                                         onClick = { haptic.trigger(HapticType.Selection); onPasscodeClick() },
                                         size = 40.dp
                                     )
@@ -177,7 +177,7 @@ fun SecuritySettingsContent(
                             title = "Автоблокировка",
                             subtitle = formatTimeout(state.autoLockTimeout),
                             trailing = {
-                                Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(18.dp))
+                                Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(18.dp))
                             },
                             onClick = { haptic.trigger(HapticType.Selection); onAutoLockClick() }
                         )
@@ -186,7 +186,7 @@ fun SecuritySettingsContent(
                             icon = Icons.Outlined.LockClock,
                             title = "Блокировать сейчас",
                             subtitle = "Мгновенная блокировка приложения",
-                            trailing = { Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(18.dp)) },
+                            trailing = { Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(18.dp)) },
                             onClick = { haptic.trigger(HapticType.Selection); onLockNowClick() }
                         )
                     }
@@ -198,7 +198,7 @@ fun SecuritySettingsContent(
                             title = "2FA (Google Authenticator)",
                             subtitle = if (state.twoFAEnabled) "Включена" else "Выключена",
                             trailing = {
-                                Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(18.dp))
+                                Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(18.dp))
                             },
                             onClick = { haptic.trigger(HapticType.Selection); on2faClick() }
                         )
@@ -210,7 +210,7 @@ fun SecuritySettingsContent(
                             icon = Icons.Outlined.Devices,
                             title = "Управление устройствами",
                             subtitle = "Просмотр и отзыв доступа",
-                            trailing = { Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(18.dp)) },
+                            trailing = { Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(18.dp)) },
                             onClick = { haptic.trigger(HapticType.Selection); onDevicesClick() }
                         )
 
@@ -218,7 +218,7 @@ fun SecuritySettingsContent(
                             icon = Icons.Outlined.History,
                             title = "Активные сессии",
                             subtitle = "Просмотр входов в аккаунт",
-                            trailing = { Icon(Icons.Default.ArrowForwardIos, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(18.dp)) },
+                            trailing = { Icon(Icons.Filled.ArrowForwardIos, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(18.dp)) },
                             onClick = { haptic.trigger(HapticType.Selection); onSessionClick() }
                         )
                     }

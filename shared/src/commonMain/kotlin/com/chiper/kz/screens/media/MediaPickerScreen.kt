@@ -34,6 +34,7 @@ import com.chiper.kz.theme.glass.GlassSurface
 import com.chiper.kz.theme.glass.GlassShapes
 import com.chiper.kz.theme.glass.GlassElevation
 import kotlinx.coroutines.delay
+import kotlin.random.Random
 
 class MediaPickerScreen(
     val onImageSelected: (String) -> Unit,
@@ -87,7 +88,7 @@ private fun generateMockImages(): List<MediaItem> {
             uri = "file:///storage/emulated/0/DCIM/IMG_$i.jpg",
             thumbnail = "thumb_$i",
             name = "IMG_$i.jpg",
-            size = (Math.random() * 5_000_000 + 500_000).toLong(),
+            size = (Random.nextDouble() * 5_000_000 + 500_000).toLong(),
             mimeType = "image/jpeg"
         )
     }
@@ -99,9 +100,9 @@ private fun generateMockVideos(): List<MediaItem> {
             uri = "file:///storage/emulated/0/DCIM/VID_$i.mp4",
             thumbnail = "vid_thumb_$i",
             name = "VID_$i.mp4",
-            size = (Math.random() * 50_000_000 + 5_000_000).toLong(),
+            size = (Random.nextDouble() * 50_000_000 + 5_000_000).toLong(),
             mimeType = "video/mp4",
-            duration = (Math.random() * 300 + 10).toInt()
+            duration = (Random.nextDouble() * 300 + 10).toInt()
         )
     }
 }
@@ -113,7 +114,7 @@ private fun generateMockFiles(): List<MediaItem> {
             uri = "file:///storage/emulated/0/Download/file_$i.$ext",
             thumbnail = "",
             name = "file_$i.$ext",
-            size = (Math.random() * 20_000_000 + 100_000).toLong(),
+            size = (Random.nextDouble() * 20_000_000 + 100_000).toLong(),
             mimeType = "application/$ext"
         )
     }

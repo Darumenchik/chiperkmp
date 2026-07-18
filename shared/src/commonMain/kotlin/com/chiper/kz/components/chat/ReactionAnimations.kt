@@ -7,17 +7,24 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.chiper.kz.theme.glass.GlassSurface
 import com.chiper.kz.theme.glass.GlassElevation
 import com.chiper.kz.theme.glass.GlassShapes
+import kotlin.math.PI
+import kotlin.math.cos
+import kotlin.math.sin
+import kotlin.random.Random
 import kotlinx.coroutines.delay
 
 @Composable
@@ -26,7 +33,7 @@ fun ReactionExplosion(
     position: Offset,
     onComplete: () -> Unit
 ) {
-    val particles = remember { (1..15).map { Particle() } }
+    val particles = remember { (1..15).map { Particle(id = it) } }
     var isVisible by remember { mutableStateOf(true) }
 
     LaunchedEffect(Unit) {
@@ -85,13 +92,13 @@ fun ReactionExplosion(
 data class Particle(
     val id: Int,
     val direction: Offset = Offset(
-        (Math.random() - 0.5) * 2,
-        -(Math.random() * 0.8 + 0.2)
+        (Random.nextFloat() - 0.5f) * 2f,
+        -(Random.nextFloat() * 0.8f + 0.2f)
     ),
-    val maxDistance: Float = (Math.random() * 100 + 50).toFloat(),
-    val gravity: Float = (Math.random() * 0.5 + 0.5).toFloat(),
-    val size: Float = (Math.random() * 12 + 18).toFloat(),
-    val rotationSpeed: Float = (Math.random() - 0.5).toFloat()
+    val maxDistance: Float = Random.nextFloat() * 100f + 50f,
+    val gravity: Float = Random.nextFloat() * 0.5f + 0.5f,
+    val size: Float = Random.nextFloat() * 12f + 18f,
+    val rotationSpeed: Float = Random.nextFloat() - 0.5f
 )
 
 @Composable
@@ -140,7 +147,7 @@ fun ReactionBurst(
     centerY: Float,
     onComplete: () -> Unit
 ) {
-    val particles = remember { (1..12).map { BurstParticle() } }
+    val particles = remember { (1..12).map { BurstParticle(id = it) } }
 
     Box(
         modifier = Modifier
@@ -169,8 +176,9 @@ fun ReactionBurst(
 
             val radius = progress * particle.maxRadius
             val angle = particle.angle + progress * particle.spin * 360
-            val x = radius * kotlin.math.cos(kotlin.math.toRadians(angle.toDouble()))
-            val y = radius * kotlin.math.sin(kotlin.math.toRadians(angle.toDouble())) - progress * 150
+            val angleRad = angle * (PI.toFloat() / 180f)
+            val x = radius * cos(angleRad)
+            val y = radius * sin(angleRad) - progress * 150f
             val scale = 1f - progress * 0.6f
             val alpha = 1f - progress
 
@@ -191,9 +199,9 @@ fun ReactionBurst(
 }
 
 data class BurstParticle(
-    val id: Int = Math.random().toInt(),
-    val angle: Float = Math.random() * 360,
-    val maxRadius: Float = (Math.random() * 80 + 40).toFloat(),
-    val spin: Float = (Math.random() - 0.5).toFloat() * 2,
-    val size: Float = (Math.random() * 10 + 20).toFloat()
+    val id: Int = Random.nextInt(),
+    val angle: Float = Random.nextFloat() * 360f,
+    val maxRadius: Float = Random.nextFloat() * 80f + 40f,
+    val spin: Float = (Random.nextFloat() - 0.5f) * 2f,
+    val size: Float = Random.nextFloat() * 10f + 20f
 )

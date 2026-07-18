@@ -1,5 +1,6 @@
 package com.chiper.kz.components.chat
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -7,6 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -18,8 +20,6 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import io.github.rosemoe.editor.text.MarkdownParser
-import io.github.rosemoe.editor.text.MarkdownRenderer
 
 @Composable
 fun MarkdownMessage(
@@ -30,9 +30,9 @@ fun MarkdownMessage(
         fontWeight = FontWeight.Normal
     ),
     modifier: Modifier = Modifier,
-    color: Color = androidx.compose.material3.MaterialTheme.colorScheme.onSurface,
-    linkColor: Color = androidx.compose.material3.MaterialTheme.colorScheme.primary,
-    codeBackground: Color = androidx.compose.material3.MaterialTheme.colorScheme.surfaceVariant
+    color: Color = MaterialTheme.colorScheme.onSurface,
+    linkColor: Color = MaterialTheme.colorScheme.primary,
+    codeBackground: Color = MaterialTheme.colorScheme.surfaceVariant
 ) {
     val annotatedString = remember(text) {
         parseMarkdown(text, style, color, linkColor, codeBackground)
@@ -45,6 +45,12 @@ fun MarkdownMessage(
         overflow = TextOverflow.Visible,
         softWrap = true
     )
+}
+
+private fun AnnotatedString.Builder.append(text: String, style: TextStyle) {
+    pushStyle(style.toSpanStyle())
+    append(text)
+    pop()
 }
 
 private fun parseMarkdown(
@@ -293,8 +299,8 @@ fun CodeBlock(
             .fillMaxWidth()
             .padding(vertical = 8.dp),
         shape = RoundedCornerShape(12.dp),
-        color = androidx.compose.material3.MaterialTheme.colorScheme.surfaceVariant,
-        border = androidx.compose.ui.graphics.BorderStroke(1.dp, androidx.compose.material3.MaterialTheme.colorScheme.outlineVariant)
+        color = MaterialTheme.colorScheme.surfaceVariant,
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             if (language.isNotEmpty()) {
@@ -302,7 +308,7 @@ fun CodeBlock(
                     text = language,
                     fontSize = 11.sp,
                     fontWeight = FontWeight.Medium,
-                    color = androidx.compose.material3.MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
+                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
                 )
                 Spacer(modifier = Modifier.height(8.dp))
             }
@@ -311,7 +317,7 @@ fun CodeBlock(
                 fontFamily = FontFamily.Monospace,
                 fontSize = 13.sp,
                 lineHeight = 20.sp,
-                color = androidx.compose.material3.MaterialTheme.colorScheme.onSurface,
+                color = MaterialTheme.colorScheme.onSurface,
                 style = androidx.compose.ui.text.TextStyle(
                     fontFamily = FontFamily.Monospace
                 )

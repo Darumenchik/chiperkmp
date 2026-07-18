@@ -39,6 +39,8 @@ import com.chiper.kz.theme.glass.GlassShapes
 import com.chiper.kz.utils.HapticFeedback
 import com.chiper.kz.utils.HapticType
 import com.chiper.kz.utils.rememberHapticFeedback
+import com.chiper.kz.utils.trigger
+import androidx.compose.ui.graphics.graphicsLayer
 import kotlinx.coroutines.launch
 
 @Composable
@@ -55,6 +57,7 @@ fun GlassMessageBubble(
 ) {
     val isSent = message.isSentByMe
     val haptic = rememberHapticFeedback()
+    val scope = rememberCoroutineScope()
     var offsetX by remember { mutableStateOf(0f) }
     var isSwipeOpen by remember { mutableStateOf(false) }
     var showReactions by remember { mutableStateOf(false) }
@@ -277,16 +280,8 @@ Icon(
         }
     }
     
-    // Use coroutine-based animation for offset since local functions can't be @Composable
     fun animateOffsetTo(target: Float) {
-        val scope = rememberCoroutineScope()
         scope.launch {
-            val anim = animateFloatAsState(
-                targetValue = target,
-                animationSpec = spring(dampingRatio = Spring.DampingRatioMediumBouncy, stiffness = Spring.StiffnessMedium),
-                label = "swipe_offset"
-            )
-            // Note: In real implementation, you'd use a coroutine to animate
             offsetX = target
             isSwipeOpen = target < -swipeThreshold
         }

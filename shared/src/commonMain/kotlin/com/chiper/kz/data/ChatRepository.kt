@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.delay
+import kotlin.random.Random
 
 class ChatRepository {
 
@@ -39,7 +40,7 @@ class ChatRepository {
             else it
         }
 
-        delay(1500 + (Math.random() * 2000).toLong())
+        delay(1500 + (Random.nextDouble() * 2000).toLong())
 
         val replies = listOf(
             "Понял, спасибо!",

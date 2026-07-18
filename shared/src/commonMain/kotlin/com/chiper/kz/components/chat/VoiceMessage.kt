@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlin.random.Random
 import com.chiper.kz.model.Message
 import com.chiper.kz.theme.glass.GlassSurface
 import com.chiper.kz.theme.glass.GlassElevation
@@ -380,12 +381,12 @@ fun RecordingWaveform(
         verticalAlignment = Alignment.CenterVertically
     ) {
         (0 until barCount).forEach { i ->
-            val barProgress by remember { mutableStateOf(0.15f + (Math.random() * 0.7f)) }
+            val barProgress by remember { mutableStateOf(0.15f + Random.nextFloat() * 0.7f) }
             LaunchedEffect(i) {
                 var currentProgress = barProgress
                 while (true) {
-                    currentProgress = 0.15f + (Math.random() * 0.7f)
-                    delay(50 + (Math.random() * 100).toLong())
+                    currentProgress = 0.15f + Random.nextFloat() * 0.7f
+                    delay(50 + (Random.nextFloat() * 100).toLong())
                 }
             }
 

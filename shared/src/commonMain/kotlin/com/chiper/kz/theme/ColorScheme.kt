@@ -77,3 +77,5 @@ internal fun ChiperColorScheme.toMaterialDark() = androidx.compose.material3.dar
     outline = outline,
     surfaceContainerHighest = surfaceVariant,
 )
+
+fun ChiperColorScheme.toMaterial3Scheme() = toMaterialLight()

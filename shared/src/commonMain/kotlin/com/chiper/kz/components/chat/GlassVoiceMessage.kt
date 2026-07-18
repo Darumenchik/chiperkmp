@@ -4,6 +4,7 @@ import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.canvas.Canvas
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -22,6 +23,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -31,6 +33,11 @@ import com.chiper.kz.theme.glass.GlassShapes
 import com.chiper.kz.utils.HapticFeedback
 import com.chiper.kz.utils.HapticType
 import com.chiper.kz.utils.rememberHapticFeedback
+import com.chiper.kz.utils.trigger
+import kotlin.math.abs
+import kotlin.math.PI
+import kotlin.math.sin
+import kotlin.random.Random
 
 @Composable
 fun GlassVoiceMessage(
@@ -92,7 +99,7 @@ fun GlassVoiceMessage(
     else 
         MaterialTheme.colorScheme.onSurfaceVariant
 
-    Row(
+    Box(
         modifier = modifier
             .fillMaxWidth()
             .padding(
@@ -100,9 +107,16 @@ fun GlassVoiceMessage(
                 end = if (isSent) 8.dp else 64.dp,
                 top = 2.dp,
                 bottom = 2.dp
-            ),
-        horizontalArrangement = if (isSent) Arrangement.End else Arrangement.Start
+            )
     ) {
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = if (isSent) Alignment.End else Alignment.Start
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = if (isSent) Arrangement.End else Arrangement.Start
+            ) {
         Box(
             modifier = Modifier
                 .widthIn(min = 180.dp, max = 320.dp)
@@ -232,6 +246,8 @@ fun GlassVoiceMessage(
         }
     }
 }
+}
+}
 
 @Composable
 fun VoiceWaveform(
@@ -261,7 +277,7 @@ fun VoiceWaveform(
 
             var currentHeight: Float
             if (isPlaying) {
-                val waveInfluence = kotlin.math.sin(kotlin.math.toRadians(wavePhase + index * 15))
+                val waveInfluence = sin((wavePhase + index * 15).toDouble() * PI / 180.0).toFloat()
                 val baseHeight = bar.baseHeight * height * 0.8f
                 val waveHeight = abs(waveInfluence) * bar.amplitude * height * 0.4f
                 currentHeight = (baseHeight + waveHeight).coerceAtMost(height * 0.9f)
@@ -286,8 +302,8 @@ fun VoiceWaveform(
 }
 
 data class WaveBar(
-    val baseHeight: Float = (Math.random() * 0.6 + 0.2).toFloat(),
-    val amplitude: Float = (Math.random() * 0.5 + 0.5).toFloat()
+    val baseHeight: Float = (Random.nextDouble() * 0.6 + 0.2).toFloat(),
+    val amplitude: Float = (Random.nextDouble() * 0.5 + 0.5).toFloat()
 )
 
 fun formatDuration(seconds: Int): String {

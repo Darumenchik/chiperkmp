@@ -34,6 +34,7 @@ import com.chiper.kz.utils.HapticFeedback
 import com.chiper.kz.utils.HapticType
 import com.chiper.kz.utils.rememberHapticFeedback
 import kotlinx.coroutines.delay
+import kotlin.random.Random
 
 class TwoFAScreen : Screen {
     @Composable
@@ -132,7 +133,7 @@ class TwoFAViewModel(
     }
 
     private fun generateBackupCodes(): List<String> {
-        return (1..10).map { String.format("%08d", (Math.random() * 100000000).toInt()) }
+        return (1..10).map { "%08d".format((Random.nextDouble() * 100000000).toInt()) }
     }
 }
 

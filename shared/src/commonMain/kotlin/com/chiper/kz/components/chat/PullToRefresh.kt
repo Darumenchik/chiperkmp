@@ -11,16 +11,25 @@ import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.ArrowDownward
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.drawCircle
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.chiper.kz.theme.glass.GlassSurface
 import com.chiper.kz.theme.glass.GlassElevation
 import com.chiper.kz.theme.glass.GlassShapes
+import kotlin.math.min
+import kotlin.math.PI
+import kotlin.math.sin
 import kotlinx.coroutines.delay
 
 @Composable
@@ -119,7 +128,7 @@ fun InfiniteSpinner(
         val center = androidx.compose.ui.geometry.Offset(size.width / 2f, size.height / 2f)
         val radius = min(size.width, size.height) / 2f - strokeWidth.toPx() / 2f
         val startAngle = progress * 360
-        val sweepAngle = 90f + (kotlin.math.sin(kotlin.math.toRadians(progress * 720)) + 1) * 90f
+        val sweepAngle = 90f + (sin((progress * 720).toDouble() * PI / 180.0) + 1) * 90f
 
         drawArc(
             color = color,
@@ -141,6 +150,13 @@ fun RefreshHeader(
     modifier: Modifier = Modifier
 ) {
     val progress = (pullDistance / triggerDistance).coerceIn(0f, 1f)
+    val infiniteTransition = rememberInfiniteTransition(label = "refresh_rotation")
+    val rotation by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 360f,
+        animationSpec = infiniteRepeatable(tween(1000, easing = LinearEasing), RepeatMode.Restart),
+        label = "rotation"
+    )
 
     Box(
         modifier = modifier
@@ -163,7 +179,7 @@ fun RefreshHeader(
                         .graphicsLayer {
                             scaleX = progress
                             scaleY = progress
-                            rotationZ = if (isRefreshing) 360f * (System.currentTimeMillis() % 1000) / 1000f else progress * 180f
+                            rotationZ = if (isRefreshing) rotation else progress * 180f
                         }
                         .wrapContentSize(Alignment.Center),
                     contentAlignment = Alignment.Center

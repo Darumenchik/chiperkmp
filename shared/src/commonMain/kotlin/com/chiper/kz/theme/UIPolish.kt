@@ -1,15 +1,24 @@
 package com.chiper.kz.theme
 
+import androidx.compose.foundation.gestures.detectHorizontalDragGestures
+import androidx.compose.foundation.gestures.pointerInput
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -28,7 +37,6 @@ fun DynamicChiperTheme(
     MaterialTheme(
         colorScheme = colorScheme.toMaterial3Scheme(),
         typography = typography,
-        shapes = ChiperShapes,
         content = content
     )
 }
@@ -150,8 +158,8 @@ fun RTLConfiguration(
     isRTL: Boolean,
     content: @Composable () -> Unit
 ) {
-    androidx.compose.ui.platform.CompositionLocalProvider(
-        androidx.compose.ui.platform.LocalLayoutDirection provides if (isRTL) androidx.compose.ui.text.style.LayoutDirection.Rtl else androidx.compose.ui.text.style.LayoutDirection.Ltr
+    CompositionLocalProvider(
+        LocalLayoutDirection provides if (isRTL) LayoutDirection.Rtl else LayoutDirection.Ltr
     ) {
         content()
     }
@@ -163,11 +171,13 @@ fun FontScaleProvider(
     fontScale: Float = 1.0f,
     content: @Composable () -> Unit
 ) {
-    androidx.compose.ui.platform.CompositionLocalProvider(
-        androidx.compose.ui.text.font.FontFamilyResolver.resolveFontFamily provides androidx.compose.ui.text.font.FontFamilyResolver.getDefault(),
-        androidx.compose.ui.unit.Density provides androidx.compose.ui.unit.Density { 
-            this.density * fontScale 
-        }
+    val currentDensity = LocalDensity.current
+    val scaledDensity = Density(
+        density = currentDensity.density * fontScale,
+        fontScale = currentDensity.fontScale
+    )
+    CompositionLocalProvider(
+        LocalDensity provides scaledDensity
     ) {
         content()
     }
@@ -235,13 +245,13 @@ object HighContrastScheme {
 fun LandscapeAware(
     content: @Composable (isLandscape: Boolean) -> Unit
 ) {
-    val configuration = androidx.compose.ui.platform.LocalConfiguration.current
+    val configuration = LocalConfiguration.current
     val isLandscape = configuration.orientation == androidx.compose.ui.platform.Configuration.ORIENTATION_LANDSCAPE
     content(isLandscape)
 }
 
 // Chat Density Settings
-enum class ChatDensity(val name: String, val multiplier: Float) {
+enum class ChatDensity(val label: String, val multiplier: Float) {
     Compact("Компактная", 0.85f),
     Standard("Стандартная", 1.0f),
     Relaxed("Развёрнутая", 1.15f)
@@ -252,10 +262,13 @@ fun ChatDensityProvider(
     density: ChatDensity = ChatDensity.Standard,
     content: @Composable () -> Unit
 ) {
-    androidx.compose.ui.platform.CompositionLocalProvider(
-        androidx.compose.ui.unit.Density provides androidx.compose.ui.unit.Density { 
-            this.density * density.multiplier 
-        }
+    val currentDensity = LocalDensity.current
+    val scaledDensity = Density(
+        density = currentDensity.density * density.multiplier,
+        fontScale = currentDensity.fontScale
+    )
+    CompositionLocalProvider(
+        LocalDensity provides scaledDensity
     ) {
         content()
     }
@@ -273,10 +286,10 @@ fun SwipeBackHandler(
             modifier = Modifier
                 .fillMaxSize()
                 .pointerInput(Unit) {
-                    awaitTouchDown()
-                    val drag = awaitTouchDrag()
-                    if (drag.dragAmount > 100f) {
-                        onBack()
+                    detectHorizontalDragGestures { _, dragAmount ->
+                        if (dragAmount > 100f) {
+                            onBack()
+                        }
                     }
                 }
         ) {
@@ -311,7 +324,7 @@ data class AppShortcut(
     val id: String,
     val shortLabel: String,
     val longLabel: String,
-    val icon: androidx.compose.ui.graphics.vector.ImageVector,
+    val icon: ImageVector,
     val intentAction: String
 )
 

@@ -1,6 +1,6 @@
 package com.chiper.kz.theme.glass
 
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,14 +9,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.*
-import androidx.compose.ui.graphics.drawscope.drawRect
+import androidx.compose.ui.graphics.drawscope.Fill
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.px
+import kotlin.math.PI
+import kotlin.math.cos
 import kotlin.math.max
 import kotlin.math.sin
-import kotlin.math.cos
 
 @Composable
 fun GlassSurface(
@@ -66,9 +70,8 @@ fun GlassSurface(
                     blendMode = BlendMode.SrcOver
                 )
             }
-            .drawWithContent()
-            .drawWithCache {
-                onDrawWithContent()
+            .drawWithContent {
+                drawContent()
                 drawRect(
                     brush = borderGradient,
                     topLeft = Offset.Zero,
@@ -168,36 +171,35 @@ private fun AnimatedBackground(
 
     Box(
         modifier = modifier.fillMaxSize()
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    Brush.radialGradient(
-                        center = Offset(
-                            size.width * (0.3f + 0.4f * sin(offset1 * kotlin.math.PI / 180)),
-                            size.height * (0.2f + 0.3f * cos(offset1 * kotlin.math.PI / 180))
-                        ),
+            .drawBehind {
+                val rad1 = offset1 * PI.toFloat() / 180f
+                val center1 = Offset(
+                    size.width * (0.3f + 0.4f * sin(rad1)),
+                    size.height * (0.2f + 0.3f * cos(rad1))
+                )
+                drawRect(
+                    brush = Brush.radialGradient(
+                        center = center1,
                         radius = max(size.width, size.height) * 0.7f,
                         colors = colors.map { it.copy(alpha = it.alpha * 0.4f) }
-                    )
+                    ),
+                    size = size
                 )
-        )
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    Brush.radialGradient(
-                        center = Offset(
-                            size.width * (0.7f + 0.2f * cos(offset2 * kotlin.math.PI / 180)),
-                            size.height * (0.8f + 0.1f * sin(offset2 * kotlin.math.PI / 180))
-                        ),
+                val rad2 = offset2 * PI.toFloat() / 180f
+                val center2 = Offset(
+                    size.width * (0.7f + 0.2f * cos(rad2)),
+                    size.height * (0.8f + 0.1f * sin(rad2))
+                )
+                drawRect(
+                    brush = Brush.radialGradient(
+                        center = center2,
                         radius = max(size.width, size.height) * 0.6f,
                         colors = colors.map { it.copy(alpha = it.alpha * 0.3f) }
-                    )
+                    ),
+                    size = size
                 )
-        )
-    }
+            }
+    )
 }
 
 object GlassGradients {

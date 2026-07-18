@@ -268,7 +268,7 @@ fun ChatDensitySelector(
                         onClick = { onDensityChange(density) },
                         variant = if (isSelected) GlassButtonVariant.Primary else GlassButtonVariant.Secondary,
                         fullWidth = false,
-                        leadingIcon = {
+                        icon = {
                             if (isSelected) {
                                 Icon(
                                     imageVector = Icons.Filled.Check,

@@ -57,7 +57,7 @@ fun App() {
         var showOnboarding by remember { mutableStateOf(false) }
 
         if (showSplash) {
-            SplashScreen(onSplashFinished = {
+            SplashScreenContent(onSplashFinished = {
                 showSplash = false
                 showOnboarding = true
             })
@@ -66,8 +66,6 @@ fun App() {
         } else {
             Navigator(screen = AuthScreen())
         }
-    }
-}
     }
 }
 

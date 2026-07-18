@@ -10,5 +10,4 @@ export com.chiper.kz.theme.ThemeViewModel
 export com.chiper.kz.theme.AnimatedChiperTheme
 export com.chiper.kz.theme.glass.*
 export com.chiper.kz.theme.ThemeRepository
-export com.chiper.kz.theme.SettingsRepository
 export com.chiper.kz.data.SettingsRepository

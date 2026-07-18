@@ -15,6 +15,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.ArrowDownward
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ComposedModifierTag
 import androidx.compose.ui.Modifier
@@ -24,9 +25,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.Dp
@@ -275,16 +278,20 @@ Icon(
             )
         }
     }
-
+    
+    // Use coroutine-based animation for offset since local functions can't be @Composable
     fun animateOffsetTo(target: Float) {
-        val anim = animateFloatAsState(
-            targetValue = target,
-            animationSpec = spring(dampingRatio = Spring.DampingRatioMediumBouncy, stiffness = Spring.StiffnessMedium),
-            label = "swipe_offset"
-        )
-        // Note: In real implementation, you'd use a coroutine to animate
-        offsetX = target
-        isSwipeOpen = target < -swipeThreshold
+        val scope = rememberCoroutineScope()
+        scope.launch {
+            val anim = animateFloatAsState(
+                targetValue = target,
+                animationSpec = spring(dampingRatio = Spring.DampingRatioMediumBouncy, stiffness = Spring.StiffnessMedium),
+                label = "swipe_offset"
+            )
+            // Note: In real implementation, you'd use a coroutine to animate
+            offsetX = target
+            isSwipeOpen = target < -swipeThreshold
+        }
     }
 }
 

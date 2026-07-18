@@ -15,6 +15,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -38,7 +41,7 @@ import com.chiper.kz.theme.SplashGradientEnd
 import com.chiper.kz.theme.TelegramBlue
 import com.chiper.kz.theme.TextSecondary
 import com.chiper.kz.theme.TelegramPaleBlue
-import com.chiper.kz.theme.SettingsRepository
+import com.chiper.kz.data.SettingsRepository
 import com.chiper.kz.theme.ThemeViewModel
 import kotlinx.coroutines.delay
 

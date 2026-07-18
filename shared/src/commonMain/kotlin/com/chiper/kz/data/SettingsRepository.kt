@@ -1,8 +1,8 @@
 package com.chiper.kz.theme
 
 import androidx.datastore.core.DataStore
-import androidx.datastore.core.preferences.mutations
-import androidx.datastore.core.preferences.preferencesKey
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.preferencesKey
 import androidx.datastore.preferences.core.Preferences
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -56,48 +56,46 @@ class SettingsRepository(private val dataStore: DataStore<Preferences>) {
     suspend fun setAppTheme(theme: AppTheme) {
         _appTheme.value = theme
         dataStore.edit { prefs ->
-            prefs.mutations().set(THEME_ID_KEY, theme.id)
+            prefs[THEME_ID_KEY] = theme.id
         }
     }
 
     suspend fun setThemeMode(mode: ThemeMode) {
         _themeMode.value = mode
         dataStore.edit { prefs ->
-            prefs.mutations().set(THEME_MODE_KEY, mode.name)
+            prefs[THEME_MODE_KEY] = mode.name
         }
     }
 
     suspend fun setUser(user: User?) {
         user?.let {
             dataStore.edit { prefs ->
-                prefs.mutations()
-                    .set(USER_ID_KEY, it.id)
-                    .set(USER_NAME_KEY, it.name)
-                    .set(USER_EMAIL_KEY, it.email)
+                prefs[USER_ID_KEY] = it.id
+                prefs[USER_NAME_KEY] = it.name
+                prefs[USER_EMAIL_KEY] = it.email
             }
         } ?: dataStore.edit { prefs ->
-            prefs.mutations()
-                .remove(USER_ID_KEY)
-                .remove(USER_NAME_KEY)
-                .remove(USER_EMAIL_KEY)
+            prefs[USER_ID_KEY] = null
+            prefs[USER_NAME_KEY] = null
+            prefs[USER_EMAIL_KEY] = null
         }
     }
 
     suspend fun setNotificationsEnabled(enabled: Boolean) {
         dataStore.edit { prefs ->
-            prefs.mutations().set(NOTIFICATIONS_ENABLED_KEY, enabled)
+            prefs[NOTIFICATIONS_ENABLED_KEY] = enabled
         }
     }
 
     suspend fun setAutoDownloadMedia(enabled: Boolean) {
         dataStore.edit { prefs ->
-            prefs.mutations().set(AUTO_DOWNLOAD_MEDIA_KEY, enabled)
+            prefs[AUTO_DOWNLOAD_MEDIA_KEY] = enabled
         }
     }
 
     suspend fun setLanguage(language: String) {
         dataStore.edit { prefs ->
-            prefs.mutations().set(LANGUAGE_KEY, language)
+            prefs[LANGUAGE_KEY] = language
         }
     }
 }

@@ -10,11 +10,17 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -24,6 +30,7 @@ import com.chiper.kz.theme.glass.GlassElevation
 import com.chiper.kz.theme.glass.GlassShapes
 import com.chiper.kz.utils.HapticFeedback
 import com.chiper.kz.utils.HapticType
+import com.chiper.kz.utils.rememberHapticFeedback
 
 @Composable
 fun GlassVoiceMessage(
@@ -76,14 +83,14 @@ fun GlassVoiceMessage(
     }
 
     val bubbleColor = if (isSent) 
-        com.chiper.kz.theme.MaterialTheme.colorScheme.primaryContainer 
+        MaterialTheme.colorScheme.primaryContainer 
     else 
-        com.chiper.kz.theme.MaterialTheme.colorScheme.surfaceVariant
+        MaterialTheme.colorScheme.surfaceVariant
 
     val textColor = if (isSent) 
-        com.chiper.kz.theme.MaterialTheme.colorScheme.onPrimaryContainer 
+        MaterialTheme.colorScheme.onPrimaryContainer 
     else 
-        com.chiper.kz.theme.MaterialTheme.colorScheme.onSurfaceVariant
+        MaterialTheme.colorScheme.onSurfaceVariant
 
     Row(
         modifier = modifier
@@ -125,9 +132,9 @@ fun GlassVoiceMessage(
                         .size(40.dp)
                         .background(
                             if (isPlaying) 
-                                com.chiper.kz.theme.MaterialTheme.colorScheme.primary.copy(alpha = 0.15f) 
+                                MaterialTheme.colorScheme.primary.copy(alpha = 0.15f) 
                             else 
-                                com.chiper.kz.theme.MaterialTheme.colorScheme.primary,
+                                MaterialTheme.colorScheme.primary,
                             GlassShapes.Circle
                         )
                         .graphicsLayer {
@@ -141,7 +148,7 @@ fun GlassVoiceMessage(
                         Icon(
                             imageVector = Icons.Filled.Pause,
                             contentDescription = "Pause",
-                            tint = com.chiper.kz.theme.MaterialTheme.colorScheme.primary,
+                            tint = MaterialTheme.colorScheme.primary,
                             modifier = Modifier.size(20.dp)
                         )
                     }
@@ -149,7 +156,7 @@ fun GlassVoiceMessage(
                         Icon(
                             imageVector = Icons.Filled.PlayArrow,
                             contentDescription = "Play",
-                            tint = if (isSent) com.chiper.kz.theme.MaterialTheme.colorScheme.onPrimaryContainer else Color.White,
+                            tint = if (isSent) MaterialTheme.colorScheme.onPrimaryContainer else Color.White,
                             modifier = Modifier.size(20.dp)
                         )
                     }
@@ -166,7 +173,7 @@ fun GlassVoiceMessage(
                     isPlaying = isPlaying,
                     progress = if (isPlaying) animatedProgress else progress,
                     wavePhase = wavePhase,
-                    color = if (isPlaying) com.chiper.kz.theme.MaterialTheme.colorScheme.primary else textColor.copy(alpha = 0.6f)
+                    color = if (isPlaying) MaterialTheme.colorScheme.primary else textColor.copy(alpha = 0.6f)
                 )
 
                 Spacer(modifier = Modifier.width(12.dp))
@@ -218,7 +225,7 @@ fun GlassVoiceMessage(
                     Icon(
                         imageVector = if (message.isRead) Icons.Filled.DoneAll else Icons.Filled.Done,
                         contentDescription = if (message.isRead) "Read" else "Sent",
-                        tint = if (message.isRead) com.chiper.kz.theme.MaterialTheme.colorScheme.primary else textColor.copy(alpha = 0.5f),
+                        tint = if (message.isRead) MaterialTheme.colorScheme.primary else textColor.copy(alpha = 0.5f),
                         modifier = Modifier.size(14.dp)
                     )
                 }
@@ -233,7 +240,7 @@ fun VoiceWaveform(
     isPlaying: Boolean,
     progress: Float,
     wavePhase: Float,
-    color: Color = com.chiper.kz.theme.MaterialTheme.colorScheme.primary,
+    color: Color = MaterialTheme.colorScheme.primary,
     barCount: Int = 40
 ) {
     val bars = remember { (1..barCount).map { WaveBar() } }

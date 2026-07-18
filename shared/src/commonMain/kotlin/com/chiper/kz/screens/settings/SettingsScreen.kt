@@ -7,6 +7,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -27,6 +28,7 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.chiper.kz.components.glass.*
 import com.chiper.kz.theme.*
+import com.chiper.kz.theme.glass.*
 import com.chiper.kz.theme.glass.GlassTypography
 import com.chiper.kz.ui.ChatDensity
 import com.chiper.kz.ui.ChatDensitySelector

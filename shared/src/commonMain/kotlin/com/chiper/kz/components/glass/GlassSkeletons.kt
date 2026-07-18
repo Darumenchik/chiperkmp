@@ -1,9 +1,7 @@
 package com.chiper.kz.components.glass
 
-import androidx.compose.animation.animateColorAsState
-import androidx.compose.animation.core.animateColorAsState
-import androidx.compose.animation.core.spring
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.*
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -15,11 +13,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.graphics.drawscope.drawRect
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -27,73 +25,12 @@ import androidx.compose.ui.text.input.KeyboardOptions
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.chiper.kz.theme.glass.*
 import com.chiper.kz.theme.*
 import kotlinx.coroutines.delay
-
-@Composable
-fun GlassSkeleton(
-    modifier: Modifier = Modifier,
-    shape: RoundedCornerShape = GlassShapes.Card,
-    elevation: GlassElevation = GlassElevation.Level1,
-    width: Dp = Dp.Unspecified,
-    height: Dp = Dp.Unspecified
-) {
-    val shimmerAlpha by animateFloatAsState(
-        targetValue = 1f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(1500, delayMillis = 500, easing = LinearEasing),
-            repeatMode = RepeatMode.Restart
-        ),
-        label = "shimmer"
-    )
-
-    val baseColor = elevation.surfaceAlpha
-    val highlightColor = baseColor + 0.1f
-
-    val animatedColor by animateColorAsState(
-        targetValue = Color.White.copy(alpha = highlightColor),
-        animationSpec = tween(1500),
-        label = "skeleton_color"
-    )
-
-    Box(
-        modifier = modifier
-            .width(width)
-            .height(height)
-            .background(
-                Brush.linearGradient(
-                    colors = listOf(
-                        Color.White.copy(alpha = baseColor),
-                        animatedColor,
-                        Color.White.copy(alpha = baseColor)
-                    ),
-                    start = Offset(-size.width * shimmerAlpha, 0f),
-                    end = Offset(size.width * (1 + shimmerAlpha), 0f)
-                ),
-                shape = shape
-            )
-            .clip(shape)
-            .drawBehind {
-                drawRect(
-                    brush = Brush.linearGradient(
-                        colors = listOf(
-                            Color.White.copy(alpha = elevation.borderAlpha * 0.5f),
-                            Color.White.copy(alpha = elevation.borderAlpha)
-                        ),
-                        start = Offset.Zero,
-                        end = Offset(0f, size.height)
-                    ),
-                    topLeft = Offset.Zero,
-                    size = size,
-                    style = Stroke(width = elevation.borderWidth.toPx())
-                )
-            },
-        contentAlignment = Alignment.Center
-    )
-}
 
 @Composable
 fun GlassSkeleton(
@@ -125,20 +62,21 @@ fun GlassSkeleton(
         modifier = modifier
             .width(width)
             .height(height)
-            .background(
-                Brush.linearGradient(
-                    colors = listOf(
-                        Color.White.copy(alpha = baseColor),
-                        animatedColor,
-                        Color.White.copy(alpha = baseColor)
-                    ),
-                    start = Offset(-size.width * shimmerAlpha, 0f),
-                    end = Offset(size.width * (1 + shimmerAlpha), 0f)
-                ),
-                shape = shape
-            )
             .clip(shape)
             .drawBehind {
+                val gradientWidth = size.width * (1 + shimmerAlpha)
+                drawRect(
+                    brush = Brush.linearGradient(
+                        colors = listOf(
+                            Color.White.copy(alpha = baseColor),
+                            animatedColor,
+                            Color.White.copy(alpha = baseColor)
+                        ),
+                        start = Offset(-gradientWidth, 0f),
+                        end = Offset(gradientWidth, 0f)
+                    ),
+                    size = size
+                )
                 drawRect(
                     brush = Brush.linearGradient(
                         colors = listOf(

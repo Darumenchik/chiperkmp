@@ -3,24 +3,26 @@ package com.chiper.kz.components.glass
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.gestures.pointerInput
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ComposedModifierTag
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.DrawModifier
-import androidx.compose.ui.draw.DrawResult
-import androidx.compose.ui.draw.DrawScope
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.*
-import androidx.compose.ui.graphics.drawscope.drawRect
+import androidx.compose.ui.graphics.drawscope.ContentDrawScope
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.px
+import androidx.compose.ui.unit.sp
 import com.chiper.kz.theme.glass.GlassElevation
 import com.chiper.kz.theme.glass.GlassShapes
 import com.chiper.kz.theme.glass.GlassSurface
@@ -51,15 +53,13 @@ private class BlurModifier(
     private val blurRadius: Dp,
     private val overlayColor: Color,
     private val alpha: Float
-) : DrawModifier, ComposedModifierTag {
+) : DrawModifier {
     override fun ContentDrawScope.draw() {
         drawRect(
             color = overlayColor.copy(alpha = overlayColor.alpha * alpha),
             size = size
         )
-        // Note: Actual blur requires RenderEffect API (API 31+)
-        // For older APIs, we use a semi-transparent overlay as fallback
-        this@BlurModifier.drawContent()
+        drawContent()
     }
 
     override fun equals(other: Any?): Boolean {
@@ -149,6 +149,7 @@ fun GlassBottomSheetScaffold(
 ) {
     var sheetState by remember { mutableStateOf(BottomSheetState.Collapsed) }
     var dragOffset by remember { mutableStateOf(0f) }
+    val density = LocalDensity.current
 
     Box(modifier = modifier.fillMaxSize()) {
         scaffoldContent(WindowInsets.safeDrawing.asPaddingValues())
@@ -157,27 +158,28 @@ fun GlassBottomSheetScaffold(
         GlassSurface(
             modifier = Modifier
                 .fillMaxWidth()
-                .offset(y = (sheetPeekHeight - dragOffset).toPx())
+                .offset(y = sheetPeekHeight - dragOffset.dp)
                 .background(Color.Transparent)
                 .pointerInput(Unit) {
+                    val peekPx = with(density) { sheetPeekHeight.toPx() }
                     detectDragGestures(
                         onDragStart = { },
                         onDrag = { change, dragAmount ->
                             change.consume()
                             dragOffset += dragAmount.y
-                            dragOffset = dragOffset.coerceIn(0f, sheetPeekHeight.toPx())
+                            dragOffset = dragOffset.coerceIn(0f, peekPx)
                         },
                         onDragEnd = {
-                            if (dragOffset > sheetPeekHeight.toPx() / 2) {
+                            if (dragOffset > peekPx / 2) {
                                 sheetState = BottomSheetState.Expanded
                                 animateDragTo(0f)
                             } else {
                                 sheetState = BottomSheetState.Collapsed
-                                animateDragTo(sheetPeekHeight.toPx())
+                                animateDragTo(peekPx)
                             }
                         },
                         onDragCancel = {
-                            animateDragTo(sheetPeekHeight.toPx())
+                            animateDragTo(peekPx)
                         }
                     )
                 },
@@ -269,7 +271,7 @@ fun GlassTooltip(
                 text = text,
                 fontSize = 12.sp,
                 color = Color.White,
-                style = androidx.compose.material3.Typography().bodySmall
+                style = MaterialTheme.typography.bodySmall
             )
         }
     }

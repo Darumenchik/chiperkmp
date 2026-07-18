@@ -12,6 +12,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
@@ -41,6 +42,10 @@ import com.chiper.kz.MainTabScreen
 import com.chiper.kz.components.glass.*
 import com.chiper.kz.theme.*
 import com.chiper.kz.theme.glass.GlassTypography
+import com.chiper.kz.theme.glass.GlassSurface
+import com.chiper.kz.theme.glass.GlassElevation
+import com.chiper.kz.theme.glass.GlassShapes
+import com.chiper.kz.theme.glass.GlassBackground
 import kotlinx.coroutines.delay
 import org.koin.core.parameter.parametersOf
 

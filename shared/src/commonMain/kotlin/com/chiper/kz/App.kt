@@ -43,11 +43,15 @@ import com.chiper.kz.theme.TextSecondary
 import com.chiper.kz.theme.TelegramPaleBlue
 import com.chiper.kz.data.SettingsRepository
 import com.chiper.kz.theme.ThemeViewModel
+import com.chiper.kz.utils.rememberHapticFeedback
+import com.chiper.kz.utils.HapticFeedback
+import com.chiper.kz.utils.HapticType
 import kotlinx.coroutines.delay
 
 @Composable
 fun App() {
-    val themeViewModel = androidx.lifecycle.viewmodel.viewModel { ThemeViewModel(SettingsRepository(androidx.datastore.core.DataStoreFactory.create(androidx.datastore.preferences.core.PreferencesSerializer())))}
+    val settingsRepository = remember { SettingsRepository.create() }
+    val themeViewModel = androidx.lifecycle.viewmodel.viewModel { ThemeViewModel(settingsRepository) }
     AnimatedChiperTheme(viewModel = themeViewModel) {
         var showSplash by remember { mutableStateOf(true) }
         var showOnboarding by remember { mutableStateOf(false) }
@@ -62,6 +66,8 @@ fun App() {
         } else {
             Navigator(screen = AuthScreen())
         }
+    }
+}
     }
 }
 

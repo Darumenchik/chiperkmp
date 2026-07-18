@@ -98,6 +98,15 @@ class SettingsRepository(private val dataStore: DataStore<Preferences>) {
             prefs[LANGUAGE_KEY] = language
         }
     }
+    
+    companion object {
+        @JvmStatic
+        fun create(): SettingsRepository = SettingsRepository(
+            androidx.datastore.core.DataStoreFactory.create(
+                androidx.datastore.preferences.core.PreferencesSerializer()
+            )
+        )
+    }
 }
 
 @kotlinx.serialization.Serializable

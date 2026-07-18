@@ -27,6 +27,9 @@ import com.chiper.kz.components.glass.*
 import com.chiper.kz.security.SecurityRepository
 import com.chiper.kz.theme.*
 import com.chiper.kz.theme.glass.GlassTypography
+import com.chiper.kz.theme.glass.GlassSurface
+import com.chiper.kz.theme.glass.GlassShapes
+import com.chiper.kz.theme.glass.GlassElevation
 import com.chiper.kz.utils.HapticFeedback
 import com.chiper.kz.utils.HapticType
 import com.chiper.kz.utils.rememberHapticFeedback

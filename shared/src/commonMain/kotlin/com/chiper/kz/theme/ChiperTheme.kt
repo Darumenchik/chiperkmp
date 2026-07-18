@@ -1,7 +1,6 @@
 package com.chiper.kz.theme
 
 import androidx.compose.animation.animateColorAsState
-import androidx.compose.animation.core.animateColorAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.material3.MaterialTheme

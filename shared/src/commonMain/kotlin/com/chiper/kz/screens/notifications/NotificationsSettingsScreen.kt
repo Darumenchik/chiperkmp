@@ -29,6 +29,9 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import com.chiper.kz.components.glass.*
 import com.chiper.kz.theme.*
 import com.chiper.kz.theme.glass.GlassTypography
+import com.chiper.kz.theme.glass.GlassSurface
+import com.chiper.kz.theme.glass.GlassShapes
+import com.chiper.kz.theme.glass.GlassElevation
 
 class NotificationsSettingsScreen : Screen {
     @Composable

@@ -1,6 +1,6 @@
-package com.chiper.kz.components
-
 @file:JvmName("Components")
+
+package com.chiper.kz.components
 
 import com.chiper.kz.components.CommonComponents
 import com.chiper.kz.components.ChatListItem

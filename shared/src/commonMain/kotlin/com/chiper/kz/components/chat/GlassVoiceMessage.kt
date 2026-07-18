@@ -144,15 +144,14 @@ fun GlassVoiceMessage(
                         .wrapContentSize(Alignment.Center),
                     contentAlignment = Alignment.Center
                 ) {
-                    AnimatedVisibility(visible = isPlaying) {
+                    if (isPlaying) {
                         Icon(
                             imageVector = Icons.Filled.Pause,
                             contentDescription = "Pause",
                             tint = MaterialTheme.colorScheme.primary,
                             modifier = Modifier.size(20.dp)
                         )
-                    }
-                    AnimatedVisibility(visible = !isPlaying) {
+                    } else {
                         Icon(
                             imageVector = Icons.Filled.PlayArrow,
                             contentDescription = "Play",
@@ -187,48 +186,48 @@ fun GlassVoiceMessage(
                 )
             }
         }
+    }
 
-        // Reactions panel
-        if (message.reactions.isNotEmpty()) {
-            AnimatedVisibility(
-                visible = message.reactions.isNotEmpty(),
-                enter = expandVertically(animationSpec = spring(dampingRatio = Spring.DampingRatioMediumBouncy)) + fadeIn(),
-                exit = shrinkVertically(animationSpec = spring(dampingRatio = Spring.DampingRatioHighBouncy)) + fadeOut()
-            ) {
-                MessageReactions(
-                    reactions = message.reactions,
-                    onReactionClick = onReactionClick,
-                    onReactionAdd = onReactionAdd,
-                    message = message,
-                    isSent = isSent
+    // Reactions panel - moved outside Row to avoid receiver conflict
+    if (message.reactions.isNotEmpty()) {
+        AnimatedVisibility(
+            visible = message.reactions.isNotEmpty(),
+            enter = expandVertically(animationSpec = spring(dampingRatio = Spring.DampingRatioMediumBouncy)) + fadeIn(),
+            exit = shrinkVertically(animationSpec = spring(dampingRatio = Spring.DampingRatioHighBouncy)) + fadeOut()
+        ) {
+            MessageReactions(
+                reactions = message.reactions,
+                onReactionClick = onReactionClick,
+                onReactionAdd = onReactionAdd,
+                message = message,
+                isSent = isSent
+            )
+        }
+    }
+
+    // Time and status
+    if (showTime || showStatus) {
+        Row(
+            modifier = Modifier
+                .align(Alignment.End)
+                .padding(top = 4.dp, end = 4.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            if (showTime) {
+                Text(
+                    text = formatMessageTime(message.timestamp),
+                    fontSize = 11.sp,
+                    color = textColor.copy(alpha = 0.5f)
                 )
             }
-        }
-
-        // Time and status
-        if (showTime || showStatus) {
-            Row(
-                modifier = Modifier
-                    .align(Alignment.End)
-                    .padding(top = 4.dp, end = 4.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(4.dp)
-            ) {
-                if (showTime) {
-                    Text(
-                        text = formatMessageTime(message.timestamp),
-                        fontSize = 11.sp,
-                        color = textColor.copy(alpha = 0.5f)
-                    )
-                }
-                if (showStatus && isSent) {
-                    Icon(
-                        imageVector = if (message.isRead) Icons.Filled.DoneAll else Icons.Filled.Done,
-                        contentDescription = if (message.isRead) "Read" else "Sent",
-                        tint = if (message.isRead) MaterialTheme.colorScheme.primary else textColor.copy(alpha = 0.5f),
-                        modifier = Modifier.size(14.dp)
-                    )
-                }
+            if (showStatus && isSent) {
+                Icon(
+                    imageVector = if (message.isRead) Icons.Filled.DoneAll else Icons.Filled.Done,
+                    contentDescription = if (message.isRead) "Read" else "Sent",
+                    tint = if (message.isRead) MaterialTheme.colorScheme.primary else textColor.copy(alpha = 0.5f),
+                    modifier = Modifier.size(14.dp)
+                )
             }
         }
     }

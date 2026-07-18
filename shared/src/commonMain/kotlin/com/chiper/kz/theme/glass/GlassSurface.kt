@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.drawscope.drawRect
 import androidx.compose.ui.unit.dp
@@ -253,5 +254,5 @@ object GlassGradients {
     )
 }
 
-private fun sin(degrees: Float): Float = kotlin.math.sin(degrees * kotlin.math.PI / 180.0)
-private fun cos(degrees: Float): Float = kotlin.math.cos(degrees * kotlin.math.PI / 180.0)
+private fun sin(degrees: Float): Float = kotlin.math.sin(degrees * kotlin.math.PI / 180.0f)
+private fun cos(degrees: Float): Float = kotlin.math.cos(degrees * kotlin.math.PI / 180.0f)

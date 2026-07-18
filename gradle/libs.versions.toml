@@ -23,6 +23,8 @@ markdown = "1.0.0"
 material3 = "1.11.0-alpha07"
 serialization = "1.7.3"
 voyager = "1.0.0"                                     
+firebase-bom = "33.1.2"
+play-services-coroutines = "1.8.1"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -72,10 +74,15 @@ datastore-preferences = { module = "androidx.datastore:datastore-preferences", v
 datastore-core = { module = "androidx.datastore:datastore-core", version.ref = "datastore" }
 datastore-rxjava3 = { module = "androidx.datastore:datastore-rxjava3", version.ref = "datastore" }
 
-# Markdown
-
 # Lottie
 lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "lottie" }
+
+# Firebase & Play Services
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
+firebase-database = { module = "com.google.firebase:firebase-database" }
+firebase-auth = { module = "com.google.firebase:firebase-auth" }
+firebase-auth-ktx = { module = "com.google.firebase:firebase-auth-ktx" }
+coroutines-play-services = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "play-services-coroutines" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -86,3 +93,4 @@ kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 googleServices = { id = "com.google.gms.google-services", version = "4.4.2" }
+

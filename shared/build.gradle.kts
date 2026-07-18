@@ -16,7 +16,6 @@ kotlin {
         minSdk = libs.versions.android.minSdk.get().toInt()
 
         compilerOptions {
-            // ИСПРАВЛЕНО: Используем метод .set() и тип JvmTarget
             jvmTarget.set(JvmTarget.JVM_17)
         }
         androidResources {
@@ -35,7 +34,7 @@ kotlin {
             implementation(libs.lottie.compose)
             implementation(libs.koin.android)
             
-            // ИСПРАВЛЕНО: Добавлен префикс project.dependencies. для работы platform() в KMP sourceSets
+            // Теперь это сработает, так как зависимости объявлены в TOML
             implementation(project.dependencies.platform(libs.firebase.bom))
             
             implementation(libs.firebase.database)
@@ -80,3 +79,4 @@ kotlin {
 dependencies {
     androidRuntimeClasspath(libs.compose.uiTooling)
 }
+

@@ -303,7 +303,7 @@ fun VoiceWaveform(
 
 data class WaveBar(
     val baseHeight: Float = (Random.nextDouble() * 0.6 + 0.2).toFloat(),
-    val amplitude: Float = (Random.nextDouble() * 0.5 + 0.5).toFloat()
+    val amplitude: Float = (Random.nextDouble() * 0.5 + 0.5f).toFloat()
 )
 
 fun formatDuration(seconds: Int): String {

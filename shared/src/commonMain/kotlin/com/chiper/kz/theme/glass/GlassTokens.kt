@@ -1,6 +1,5 @@
 package com.chiper.kz.theme.glass
 
-import androidx.compose.material3.TextStyle
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -72,7 +71,7 @@ object GlassTypography {
         fontSize = 56.sp,
         fontWeight = FontWeight.Bold,
         lineHeight = 64.sp,
-        letterSpacing = (-0.5).sp
+        letterSpacing = (-0.5f).sp
     )
 
     val DisplayMedium = TextStyle(

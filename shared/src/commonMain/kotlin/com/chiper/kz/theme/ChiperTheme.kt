@@ -60,7 +60,7 @@ object ChiperTypography {
         fontWeight = FontWeight.Bold,
         fontSize = 56.sp,
         lineHeight = 64.sp,
-        letterSpacing = (-0.5).sp
+        letterSpacing = (-0.5f).sp
     )
     val displayMedium = androidx.compose.material3.TextStyle(
         fontFamily = fontFamily,

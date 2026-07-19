@@ -113,6 +113,7 @@ object GlassShapes {
     val Island = RoundedCornerShape(32.dp)
     val Bubble = RoundedCornerShape(20.dp)
     val Small = RoundedCornerShape(12.dp)
+    val Circle = RoundedCornerShape(50)
 }
 
 object GlassColors {

@@ -7,8 +7,8 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Icons.Icons
-import androidx.compose.material.Icons.filled.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -19,6 +19,15 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.style.TextAlign
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
@@ -54,7 +63,7 @@ class ForgotPasscodeScreen : Screen {
 class ForgotPasscodeViewModel(
     private val securityRepository: SecurityRepository,
     private val authRepository: com.chiper.kz.data.AuthRepository
-) : androidx.lifecycle.ViewModel() {
+) : ViewModel() {
 
     var uiState by mutableStateOf(ForgotPasscodeUiState())
         private set
@@ -108,9 +117,9 @@ class ForgotPasscodeViewModel(
     }
 
     private fun startCooldown() {
-        androidx.lifecycle.viewmodel.viewModelScope.launch {
+        viewModelScope.launch {
             while (uiState.resendCooldown > 0) {
-                kotlinx.coroutines.delay(1000)
+                delay(1000)
                 uiState = uiState.copy(resendCooldown = uiState.resendCooldown - 1)
             }
         }
@@ -190,7 +199,7 @@ fun ForgotPasscodeContent(
                             else -> "Восстановление"
                         },
                         style = GlassTypography.HeadlineSmall,
-                        textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                        textAlign = TextAlign.Center
                     )
 
                     Spacer(modifier = Modifier.height(8.dp))
@@ -204,7 +213,7 @@ fun ForgotPasscodeContent(
                         },
                         style = GlassTypography.BodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                        textAlign = TextAlign.Center
                     )
 
                     Spacer(modifier = Modifier.height(32.dp))
@@ -267,11 +276,11 @@ fun EmailStep(
         label = "Email",
         leadingIcon = { Icon(Icons.Outlined.Email, contentDescription = null, tint = MaterialTheme.colorScheme.primary) },
         modifier = Modifier.fillMaxWidth(),
-        keyboardOptions = androidx.compose.foundation.text.KeyboardOptions(
-            keyboardType = androidx.compose.ui.text.input.KeyboardType.EmailAddress,
-            imeAction = androidx.compose.ui.text.input.ImeAction.Done
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.EmailAddress,
+            imeAction = ImeAction.Done
         ),
-        keyboardActions = androidx.compose.foundation.text.KeyboardActions(onDone = onSubmit),
+        keyboardActions = KeyboardActions(onDone = onSubmit),
         isError = error != null,
         errorText = error
     )
@@ -348,7 +357,7 @@ fun CodeStep(
     Spacer(modifier = Modifier.height(24.dp))
 
     AnimatedVisibility(visible = error != null) {
-        Text(text = error!!, style = GlassTypography.BodyMedium, color = MaterialTheme.colorScheme.error, textAlign = androidx.compose.ui.text.style.TextAlign.Center)
+        Text(text = error!!, style = GlassTypography.BodyMedium, color = MaterialTheme.colorScheme.error, textAlign = TextAlign.Center)
     }
 
     Spacer(modifier = Modifier.height(16.dp))
@@ -358,7 +367,7 @@ fun CodeStep(
             text = "Повторная отправка через ${resendCooldown} сек",
             style = GlassTypography.BodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
-            textAlign = androidx.compose.ui.text.style.TextAlign.Center
+            textAlign = TextAlign.Center
         )
     } else {
         TextButton(onClick = onResendClick) {
@@ -376,7 +385,7 @@ fun NewPasscodeStep(
         text = "Создайте новый код",
         style = GlassTypography.BodyMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
-        textAlign = androidx.compose.ui.text.style.TextAlign.Center
+        textAlign = TextAlign.Center
     )
 
     Spacer(modifier = Modifier.height(24.dp))

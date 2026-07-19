@@ -1,5 +1,7 @@
 package com.chiper.kz.screens.security
 
+import androidx.compose.foundation.interaction.MutableInteractionSource
+
 import androidx.compose.animation.animateFloatAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
@@ -8,8 +10,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icons.Icons
-import androidx.compose.material.Icons.filled.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -19,6 +21,8 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextAlign
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
@@ -243,14 +247,14 @@ fun DisabledContent(onEnableClick: () -> Unit, haptic: HapticFeedback) {
         Text(
             text = "Двухфакторная аутентификация",
             style = GlassTypography.HeadlineMedium,
-            textAlign = androidx.compose.ui.text.style.TextAlign.Center
+            textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
             text = "Добавьте дополнительный слой защиты для вашего аккаунта",
             style = GlassTypography.BodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
-            textAlign = androidx.compose.ui.text.style.TextAlign.Center
+            textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(32.dp))
         GlassButton(
@@ -298,7 +302,7 @@ fun SetupContent(
                     text = "Отсканируйте QR-код в Google Authenticator или Authy",
                     style = GlassTypography.BodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                    textAlign = TextAlign.Center
                 )
                 Spacer(modifier = Modifier.height(24.dp))
                 
@@ -350,7 +354,7 @@ fun SetupContent(
                             letterSpacing = 2.sp
                         ),
                         modifier = Modifier.padding(16.dp),
-                        textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                        textAlign = TextAlign.Center
                     )
                 }
                 
@@ -426,7 +430,7 @@ fun EnabledContent(
             Icon(
                 imageVector = Icons.Filled.Verified,
                 contentDescription = "2FA Enabled",
-                tint = MaterialTheme.colorScheme.success,
+                tint = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.size(48.dp)
             )
         }
@@ -440,7 +444,7 @@ fun EnabledContent(
             text = "Ваш аккаунт защищен двухфакторной аутентификацией",
             style = GlassTypography.BodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
-            textAlign = androidx.compose.ui.text.style.TextAlign.Center
+            textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(32.dp))
         
@@ -481,14 +485,14 @@ fun VerifyContent(
         Text(
             text = "Подтвердите вход",
             style = GlassTypography.HeadlineMedium,
-            textAlign = androidx.compose.ui.text.style.TextAlign.Center
+            textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
             text = "Введите код из Google Authenticator",
             style = GlassTypography.BodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
-            textAlign = androidx.compose.ui.text.style.TextAlign.Center
+            textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(24.dp))
         
@@ -569,7 +573,7 @@ fun DisableConfirmContent(
             text = "Ваш аккаунт станет менее защищенным. Рекомендуем оставить 2FA включенной.",
             style = GlassTypography.BodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
-            textAlign = androidx.compose.ui.text.style.TextAlign.Center
+            textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(32.dp))
         
@@ -611,7 +615,7 @@ fun BackupCodesContent(
             text = "Сохраните эти коды в безопасном месте. Каждый код можно использовать один раз.",
             style = GlassTypography.BodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
-            textAlign = androidx.compose.ui.text.style.TextAlign.Center
+            textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(24.dp))
         

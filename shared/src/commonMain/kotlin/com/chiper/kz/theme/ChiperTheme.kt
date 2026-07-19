@@ -3,7 +3,9 @@ package com.chiper.kz.theme
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Shapes
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
@@ -35,12 +37,12 @@ fun ChiperTheme(
 
     val typography = ChiperTypography
 
-    val shapes = androidx.compose.material3.Shapes(
-        small = androidx.compose.foundation.shape.RoundedCornerShape(8.dp),
-        medium = androidx.compose.foundation.shape.RoundedCornerShape(16.dp),
-        large = androidx.compose.foundation.shape.RoundedCornerShape(24.dp),
-        extraSmall = androidx.compose.foundation.shape.RoundedCornerShape(4.dp),
-        extraLarge = androidx.compose.foundation.shape.RoundedCornerShape(32.dp)
+    val shapes = Shapes(
+        small = RoundedCornerShape(8.dp),
+        medium = RoundedCornerShape(16.dp),
+        large = RoundedCornerShape(24.dp),
+        extraSmall = RoundedCornerShape(4.dp),
+        extraLarge = RoundedCornerShape(32.dp)
     )
 
     MaterialTheme(

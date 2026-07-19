@@ -1,7 +1,9 @@
 package com.chiper.kz.theme.glass
 
+import androidx.compose.material3.TextStyle
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -66,107 +68,107 @@ object GlassGradients {
 }
 
 object GlassTypography {
-    val DisplayLarge = androidx.compose.material3.TextStyle(
+    val DisplayLarge = TextStyle(
         fontSize = 56.sp,
-        fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+        fontWeight = FontWeight.Bold,
         lineHeight = 64.sp,
         letterSpacing = (-0.5).sp
     )
 
-    val DisplayMedium = androidx.compose.material3.TextStyle(
+    val DisplayMedium = TextStyle(
         fontSize = 44.sp,
-        fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+        fontWeight = FontWeight.Bold,
         lineHeight = 52.sp,
         letterSpacing = 0.sp
     )
 
-    val DisplaySmall = androidx.compose.material3.TextStyle(
+    val DisplaySmall = TextStyle(
         fontSize = 36.sp,
-        fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+        fontWeight = FontWeight.Bold,
         lineHeight = 44.sp,
         letterSpacing = 0.sp
     )
 
-    val HeadlineLarge = androidx.compose.material3.TextStyle(
+    val HeadlineLarge = TextStyle(
         fontSize = 32.sp,
-        fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+        fontWeight = FontWeight.Bold,
         lineHeight = 40.sp,
         letterSpacing = 0.sp
     )
 
-    val HeadlineMedium = androidx.compose.material3.TextStyle(
+    val HeadlineMedium = TextStyle(
         fontSize = 28.sp,
-        fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
+        fontWeight = FontWeight.SemiBold,
         lineHeight = 36.sp,
         letterSpacing = 0.sp
     )
 
-    val HeadlineSmall = androidx.compose.material3.TextStyle(
+    val HeadlineSmall = TextStyle(
         fontSize = 24.sp,
-        fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
+        fontWeight = FontWeight.SemiBold,
         lineHeight = 32.sp,
         letterSpacing = 0.sp
     )
 
-    val TitleLarge = androidx.compose.material3.TextStyle(
+    val TitleLarge = TextStyle(
         fontSize = 22.sp,
-        fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+        fontWeight = FontWeight.Bold,
         lineHeight = 28.sp,
         letterSpacing = 0.sp
     )
 
-    val TitleMedium = androidx.compose.material3.TextStyle(
+    val TitleMedium = TextStyle(
         fontSize = 18.sp,
-        fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
+        fontWeight = FontWeight.SemiBold,
         lineHeight = 24.sp,
         letterSpacing = 0.15.sp
     )
 
-    val TitleSmall = androidx.compose.material3.TextStyle(
+    val TitleSmall = TextStyle(
         fontSize = 15.sp,
-        fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
+        fontWeight = FontWeight.SemiBold,
         lineHeight = 20.sp,
         letterSpacing = 0.1.sp
     )
 
-    val BodyLarge = androidx.compose.material3.TextStyle(
+    val BodyLarge = TextStyle(
         fontSize = 16.sp,
-        fontWeight = androidx.compose.ui.text.font.FontWeight.Normal,
+        fontWeight = FontWeight.Normal,
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp
     )
 
-    val BodyMedium = androidx.compose.material3.TextStyle(
+    val BodyMedium = TextStyle(
         fontSize = 14.sp,
-        fontWeight = androidx.compose.ui.text.font.FontWeight.Normal,
+        fontWeight = FontWeight.Normal,
         lineHeight = 20.sp,
         letterSpacing = 0.25.sp
     )
 
-    val BodySmall = androidx.compose.material3.TextStyle(
+    val BodySmall = TextStyle(
         fontSize = 12.sp,
-        fontWeight = androidx.compose.ui.text.font.FontWeight.Normal,
+        fontWeight = FontWeight.Normal,
         lineHeight = 16.sp,
         letterSpacing = 0.4.sp
     )
 
-    val LabelLarge = androidx.compose.material3.TextStyle(
+    val LabelLarge = TextStyle(
         fontSize = 14.sp,
-        fontWeight = androidx.compose.ui.text.font.FontWeight.Medium,
+        fontWeight = FontWeight.Medium,
         lineHeight = 20.sp,
         letterSpacing = 0.1.sp
     )
 
-    val LabelMedium = androidx.compose.material3.TextStyle(
+    val LabelMedium = TextStyle(
         fontSize = 12.sp,
-        fontWeight = androidx.compose.ui.text.font.FontWeight.Medium,
+        fontWeight = FontWeight.Medium,
         lineHeight = 16.sp,
         letterSpacing = 0.5.sp
     )
 
-    val LabelSmall = androidx.compose.material3.TextStyle(
+    val LabelSmall = TextStyle(
         fontSize = 11.sp,
-        fontWeight = androidx.compose.ui.text.font.FontWeight.Medium,
+        fontWeight = FontWeight.Medium,
         lineHeight = 16.sp,
         letterSpacing = 0.5.sp
     )

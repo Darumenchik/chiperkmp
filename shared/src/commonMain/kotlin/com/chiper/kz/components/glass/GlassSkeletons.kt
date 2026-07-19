@@ -5,8 +5,8 @@ import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icons.Icons
-import androidx.compose.material.Icons.filled.Check
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -18,6 +18,8 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -35,7 +37,7 @@ import kotlinx.coroutines.delay
 @Composable
 fun GlassSkeleton(
     modifier: Modifier = Modifier,
-    shape: androidx.compose.ui.graphics.Shape = GlassShapes.Card,
+    shape: Shape = GlassShapes.Card,
     elevation: GlassElevation = GlassElevation.Level1,
     width: Dp = Dp.Unspecified,
     height: Dp = Dp.Unspecified
@@ -106,8 +108,8 @@ fun GlassSkeletonProfile(
         GlassSkeleton(
             modifier = Modifier
                 .size(100.dp)
-                .clip(androidx.compose.foundation.shape.CircleShape),
-            shape = androidx.compose.foundation.shape.CircleShape,
+                .clip(CircleShape),
+            shape = CircleShape,
             elevation = GlassElevation.Floating
         )
         Spacer(modifier = Modifier.height(16.dp))

@@ -5,14 +5,16 @@ import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
-import androidx.compose.foundation.gestures.drag
+import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.gestures.pointerInput
+import androidx.compose.ui.input.pointer.consumePositionChange
+import androidx.compose.ui.input.pointer.positionChange
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icons.Icons
-import androidx.compose.material.Icons.filled.*
-import androidx.compose.material.Icons.outlined.ArrowDownward
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.ArrowDownward
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.rememberCoroutineScope
@@ -107,11 +109,11 @@ fun GlassMessageBubble(
             .offset(x = offsetX.dp)
             .pointerInput(Unit) {
                 if (!isSent || isSwipeOpen) return@pointerInput
-                drag(
+                detectDragGestures(
                     onDragStart = { },
-                    onDrag = { change ->
-                        change.consume()
-                        val newOffset = (offsetX + change.positionChange().x).coerceIn(-maxSwipeDistance, 0f)
+                    onDrag = { change, dragAmount ->
+                        change.consumePositionChange()
+                        val newOffset = (offsetX + dragAmount.x).coerceIn(-maxSwipeDistance, 0f)
                         offsetX = newOffset
                         isSwipeOpen = newOffset < -swipeThreshold
                     },

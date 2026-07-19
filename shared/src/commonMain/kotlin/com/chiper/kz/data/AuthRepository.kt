@@ -2,6 +2,7 @@ package com.chiper.kz.data
 
 import com.chiper.kz.utils.PlatformTime
 import com.chiper.kz.model.User
+import delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -31,7 +32,7 @@ class AuthRepository {
     )
 
     suspend fun login(email: String, password: String): Result<User> {
-        kotlinx.coroutines.delay(1000)
+        delay(1000)
         val user = demoUsers[email]
         return if (user != null && password.length >= 6) {
             _currentUser.value = user
@@ -44,7 +45,7 @@ class AuthRepository {
     }
 
     suspend fun register(name: String, email: String, password: String): Result<User> {
-        kotlinx.coroutines.delay(1500)
+        delay(1500)
         if (demoUsers.containsKey(email)) {
             return Result.failure(Exception("Пользователь с таким email уже существует"))
         }
@@ -68,7 +69,7 @@ class AuthRepository {
     }
 
     suspend fun loginWithGoogle(): Result<User> {
-        kotlinx.coroutines.delay(1500)
+        delay(1500)
         val user = User(
             id = "google_user_${PlatformTime.currentTimeMillis()}",
             name = "Google User",

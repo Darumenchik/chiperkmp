@@ -1,5 +1,7 @@
 package com.chiper.kz.screens.media
 
+import androidx.compose.foundation.interaction.MutableInteractionSource
+
 import androidx.compose.animation.animateFloatAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
@@ -7,8 +9,8 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Icons.Icons
-import androidx.compose.material.Icons.filled.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -28,6 +30,8 @@ import com.chiper.kz.theme.glass.GlassTypography
 import com.chiper.kz.utils.HapticFeedback
 import com.chiper.kz.utils.HapticType
 import com.chiper.kz.utils.rememberHapticFeedback
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class VideoMessageScreen(
     val onRecordComplete: (String, Int) -> Unit, // video path, duration
@@ -109,6 +113,7 @@ fun VideoMessageScreenContent(
         animationSpec = spring(dampingRatio = Spring.DampingRatioMediumBouncy, stiffness = Spring.StiffnessLow),
         label = "record_progress"
     )
+    val coroutineScope = rememberCoroutineScope()
 
     ChiperTheme {
         GlassBackground(animated = true) {
@@ -181,13 +186,13 @@ fun VideoMessageScreenContent(
                 // Duration
                 if (state.isRecording) {
                     var formattedDuration by remember { mutableStateOf("00:00") }
-                    androidx.compose.runtime.LaunchedEffect(state.isRecording) {
+                    LaunchedEffect(state.isRecording) {
                         if (state.isRecording) {
-                            androidx.lifecycle.viewmodel.viewModelScope.launch {
+                            coroutineScope.launch {
                                 while (state.isRecording) {
                                     val elapsed = (System.currentTimeMillis() - state.startTime) / 1000
                                     formattedDuration = formatDuration(elapsed.toInt())
-                                    kotlinx.coroutines.delay(1000)
+                                    delay(1000)
                                 }
                             }
                         }

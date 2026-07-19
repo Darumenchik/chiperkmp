@@ -1,4 +1,5 @@
 package com.chiper.kz.screens.calls
+import androidx.compose.ui.input.pointer.consumePositionChange
 
 import androidx.compose.animation.animateFloatAsState
 import androidx.compose.animation.core.animateFloatAsState
@@ -11,11 +12,12 @@ import androidx.compose.foundation.gestures.pointerInput
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Icons.Icons
-import androidx.compose.material.Icons.filled.*
-import androidx.compose.material.Icons.outlined.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -35,6 +37,7 @@ import com.chiper.kz.theme.glass.GlassTypography
 import com.chiper.kz.utils.HapticFeedback
 import com.chiper.kz.utils.HapticType
 import com.chiper.kz.utils.rememberHapticFeedback
+import kotlinx.coroutines.launch
 
 data class IncomingCallScreen(
     val callerId: String,
@@ -92,7 +95,7 @@ data class IncomingCallScreen(
                         }
 
                         Text(
-                            text = if (isVideo) "Видеозвонок от $callerName" : "Звонок от $callerName",
+                            text = if (isVideo) "Видеозвонок от $callerName" else "Звонок от $callerName",
                             style = GlassTypography.HeadlineSmall,
                             color = Color.White,
                             textAlign = androidx.compose.ui.text.style.TextAlign.Center
@@ -130,7 +133,7 @@ data class IncomingCallScreen(
                                     detectDragGestures(
                                         onDragStart = { },
                                         onDrag = { change, dragAmount ->
-                                            change.consume()
+                                            change.consumePositionChange()
                                             if (dragAmount.x < -50) {
                                                 haptic.trigger(HapticType.Success)
                                                 onDecline()
@@ -182,7 +185,7 @@ data class IncomingCallScreen(
                                     detectDragGestures(
                                         onDragStart = { },
                                         onDrag = { change, dragAmount ->
-                                            change.consume()
+                                            change.consumePositionChange()
                                             if (dragAmount.x > 50) {
                                                 haptic.trigger(HapticType.Success)
                                                 onAccept()
@@ -279,7 +282,7 @@ fun OutgoingCallScreen(
                     }
 
                     Text(
-                        text = if (isVideo) "Видеозвонок $calleeName" : "Звонок $calleeName",
+                        text = if (isVideo) "Видеозвонок $calleeName" else "Звонок $calleeName",
                         style = GlassTypography.HeadlineSmall,
                         color = Color.White,
                         textAlign = androidx.compose.ui.text.style.TextAlign.Center
@@ -345,10 +348,12 @@ fun ActiveCallScreen(
     var callDuration by remember { mutableStateOf(0) }
     val haptic = rememberHapticFeedback()
 
+    val scope = rememberCoroutineScope()
+
     LaunchedEffect(Unit) {
-        val job = kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.Dispatchers.Main).launch {
+        val job = scope.launch {
             while (true) {
-                kotlinx.coroutines.delay(1000)
+                delay(1000)
                 callDuration++
             }
         }
@@ -437,7 +442,7 @@ fun ActiveCallScreen(
                         )
                         CallControlButton(
                             icon = if (isVideo && isCameraOff) Icons.Filled.VideocamOff else Icons.Filled.Videocam,
-                            label = isVideo ? "Камера" : "Видео",
+                            label = if (isVideo) "Камера" else "Видео",
                             isActive = isVideo && isCameraOff,
                             onClick = { haptic.trigger(HapticType.Selection); if (isVideo) onCameraToggle() else onFlipCamera() },
                             haptic = rememberHapticFeedback()

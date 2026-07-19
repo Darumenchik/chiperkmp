@@ -6,9 +6,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.canvas.Canvas
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Icons.Icons
-import androidx.compose.material.Icons.filled.Refresh
-import androidx.compose.material.Icons.filled.ArrowDownward
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.ArrowDownward
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text

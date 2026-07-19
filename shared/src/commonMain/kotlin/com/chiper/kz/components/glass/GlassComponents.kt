@@ -1,5 +1,8 @@
 package com.chiper.kz.components.glass
 
+import androidx.compose.ui.input.pointer.consume
+import androidx.compose.foundation.interaction.MutableInteractionSource
+
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
@@ -8,9 +11,9 @@ import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.material.Icons.Icons
-import androidx.compose.material.Icons.filled.ArrowForward
-import androidx.compose.material.Icons.filled.Check
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -345,15 +348,19 @@ fun GlassTextField(
                         color = TextPrimary,
                         fontWeight = FontWeight.Normal
                     ),
-                    colors = TextFieldDefaults.textFieldColors(
-                        backgroundColor = Color.Transparent,
-                        focusedBackgroundColor = Color.Transparent,
-                        unfocusedBackgroundColor = Color.Transparent,
+                    colors = TextFieldDefaults.colors(
+                        focusedContainerColor = Color.Transparent,
+                        unfocusedContainerColor = Color.Transparent,
+                        disabledContainerColor = Color.Transparent,
                         cursorColor = TelegramBlue,
-                        textColor = TextPrimary,
-                        placeholderColor = TextSecondary.copy(alpha = 0.5f),
-                        leadingIconColor = if (focused) TelegramBlue else TextSecondary,
-                        trailingIconColor = if (focused) TelegramBlue else TextSecondary
+                        focusedTextColor = TextPrimary,
+                        unfocusedTextColor = TextPrimary,
+                        focusedPlaceholderColor = TextSecondary.copy(alpha = 0.5f),
+                        unfocusedPlaceholderColor = TextSecondary.copy(alpha = 0.5f),
+                        focusedLeadingIconColor = if (focused) TelegramBlue else TextSecondary,
+                        unfocusedLeadingIconColor = TextSecondary,
+                        focusedTrailingIconColor = if (focused) TelegramBlue else TextSecondary,
+                        unfocusedTrailingIconColor = TextSecondary
                     ),
                     placeholder = { if (!focused && value.isBlank()) Text(label, color = TextSecondary.copy(alpha = 0.5f), fontSize = 16.sp) }
                 )

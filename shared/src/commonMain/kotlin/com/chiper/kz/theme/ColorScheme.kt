@@ -1,5 +1,7 @@
 package com.chiper.kz.theme
 
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
 import kotlinx.serialization.Serializable
 
@@ -32,7 +34,7 @@ data class ChiperColorScheme(
 }
 
 // Material3 ColorScheme extensions
-internal fun ChiperColorScheme.toMaterialLight() = androidx.compose.material3.lightColorScheme(
+internal fun ChiperColorScheme.toMaterialLight() = lightColorScheme(
     primary = primary,
     onPrimary = onPrimary,
     primaryContainer = primaryVariant,
@@ -55,7 +57,7 @@ internal fun ChiperColorScheme.toMaterialLight() = androidx.compose.material3.li
     surfaceContainerHighest = surfaceVariant,
 )
 
-internal fun ChiperColorScheme.toMaterialDark() = androidx.compose.material3.darkColorScheme(
+internal fun ChiperColorScheme.toMaterialDark() = darkColorScheme(
     primary = primary,
     onPrimary = onPrimary,
     primaryContainer = primaryVariant,

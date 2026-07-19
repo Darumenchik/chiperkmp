@@ -13,6 +13,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.*
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -77,7 +79,7 @@ private fun parseMarkdown(
             }
             MarkdownSegmentType.Italic -> {
                 builder.append(segment.content, baseStyle.copy(
-                    fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
+                    fontStyle = FontStyle.Italic,
                     color = color
                 ))
             }
@@ -137,7 +139,7 @@ private fun parseMarkdown(
                     color = color.copy(alpha = 0.5f)
                 ))
                 builder.append(segment.content, baseStyle.copy(
-                    fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
+                    fontStyle = FontStyle.Italic,
                     color = color.copy(alpha = 0.8f)
                 ))
                 builder.append("\n")
@@ -318,7 +320,7 @@ fun CodeBlock(
                 fontSize = 13.sp,
                 lineHeight = 20.sp,
                 color = MaterialTheme.colorScheme.onSurface,
-                style = androidx.compose.ui.text.TextStyle(
+                style = TextStyle(
                     fontFamily = FontFamily.Monospace
                 )
             )

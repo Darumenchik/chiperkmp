@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.layout.Arrangement
 import cafe.adriel.voyager.core.screen.Screen
 import com.chiper.kz.theme.*
@@ -89,7 +90,7 @@ class SplashScreen(
                             .fillMaxSize()
                             .background(
                                 Color.White.copy(alpha = 0.2f),
-                                shape = androidx.compose.foundation.shape.RoundedCornerShape(30.dp)
+                                shape = RoundedCornerShape(30.dp)
                             ),
                         contentAlignment = Alignment.Center
                     ) {

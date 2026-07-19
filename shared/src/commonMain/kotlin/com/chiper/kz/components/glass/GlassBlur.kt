@@ -1,5 +1,8 @@
 package com.chiper.kz.components.glass
 
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.input.pointer.consumePositionChange
+
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
@@ -165,7 +168,7 @@ fun GlassBottomSheetScaffold(
                     detectDragGestures(
                         onDragStart = { },
                         onDrag = { change, dragAmount ->
-                            change.consume()
+                            change.consumePositionChange()
                             dragOffset += dragAmount.y
                             dragOffset = dragOffset.coerceIn(0f, peekPx)
                         },

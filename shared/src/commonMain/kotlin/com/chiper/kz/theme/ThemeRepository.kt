@@ -14,6 +14,8 @@ import androidx.datastore.preferences.core.PreferencesKeys
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.rxjava3.RxDataStore
 import androidx.datastore.rxjava3.RxDataStoreBuilder
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -43,7 +45,7 @@ class ThemeRepository(private val dataStore: DataStore<Preferences>) {
     }
 
     private fun loadTheme() {
-        kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.IO).launch {
             try {
                 val prefs = dataStore.data.firstOrNull().await()
                 prefs?.let {
